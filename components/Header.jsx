@@ -121,15 +121,34 @@ function NavItem({ item, active, megaMenu, setMegaMenu, onNavigate }) {
       >
         {item.label}
       </Link>
-      {item.mega && megaMenu === item.mega && (
-        <div className="absolute top-full left-0 mt-0 w-72 bg-white border border-[#3F4143]/10 shadow-xl py-3">
-          {MEGA_CONTENT[item.mega].map((m, i) => (
-            <Link key={i} href={m.href} onClick={onNavigate} className="block text-left px-6 py-2 text-sm text-[#3F4143]/80 hover:bg-[#FFD91A]/20 hover:text-[#3F4143] transition-colors">
-              {m.label}
-            </Link>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {item.mega && megaMenu === item.mega && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute top-full left-0 mt-0 w-72 bg-white border border-[#3F4143]/10 shadow-xl py-3"
+          >
+            {MEGA_CONTENT[item.mega].map((m, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.04, duration: 0.25 }}
+              >
+                <Link
+                  href={m.href}
+                  onClick={onNavigate}
+                  className="block text-left px-6 py-2 text-sm text-[#3F4143]/80 hover:bg-[#FFD91A]/20 hover:text-[#3F4143] transition-colors"
+                >
+                  {m.label}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
