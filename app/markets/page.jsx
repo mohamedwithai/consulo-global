@@ -1,4 +1,5 @@
 import MarketCard from '../../components/MarketCard';
+import MarketEcosystem from '../../components/MarketEcosystem';
 import { MARKETS } from '../../lib/data';
 
 export const metadata = { title: 'Specialist Markets | Consulo Global' };
@@ -10,7 +11,7 @@ export default function MarketsPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="text-[#FFD91A] text-xs font-bold tracking-[0.2em] mb-4">SPECIALIST MARKETS</div>
           <h1 className="text-5xl md:text-7xl font-black text-white leading-[0.95] tracking-tight max-w-5xl">Deep specialism across the industrial technology ecosystem.</h1>
-          <p className="mt-8 text-xl text-white/80 max-w-3xl leading-relaxed">Consulo operates across the technologies, products and commercial markets that power modern industry — from automation and motion control through to mechanical power transmission, material handling, process technology and energy.</p>
+          <p className="mt-8 text-xl text-white/80 max-w-3xl leading-relaxed">Consulo operates across seven specialist markets — from automation and motion control through electrification, mechanical power transmission, material handling and process technology to combustion and thermal systems.</p>
         </div>
       </section>
       <section className="py-20 bg-[#F7F7F5]">
@@ -22,6 +23,7 @@ export default function MarketsPage() {
           </div>
         </div>
       </section>
+      <MarketEcosystem />
     </>
   );
 }

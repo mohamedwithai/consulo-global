@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="Industrial electrification">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2A2C2E"/>
+      <stop offset="0.55" stop-color="#3F4143"/>
+      <stop offset="1" stop-color="#25272A"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFD91A" stop-opacity="0"/>
+      <stop offset="1" stop-color="#FFD91A" stop-opacity="0.30"/>
+    </linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" fill="none" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+
+  <!-- busbar / power distribution rails -->
+  <g stroke="#FFD91A" stroke-opacity="0.55" stroke-width="3" fill="none">
+    <path d="M0 250 H320 L380 190 H720 L780 250 H1200"/>
+    <path d="M0 560 H300 L360 620 H760 L820 560 H1200"/>
+  </g>
+  <g fill="#FFD91A" fill-opacity="0.9">
+    <circle cx="380" cy="190" r="9"/><circle cx="720" cy="190" r="9"/>
+    <circle cx="360" cy="620" r="9"/><circle cx="760" cy="620" r="9"/>
+  </g>
+
+  <!-- stator / motor cross-section -->
+  <g transform="translate(600 405)">
+    <circle r="176" fill="none" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="2"/>
+    <circle r="140" fill="none" stroke="#FFD91A" stroke-opacity="0.75" stroke-width="4"/>
+    <circle r="60" fill="none" stroke="#FFFFFF" stroke-opacity="0.30" stroke-width="3"/>
+    <circle r="16" fill="#FFD91A"/>
+    <g stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="10" stroke-linecap="round">
+      <path d="M0 -140 V-92"/><path d="M0 140 V92"/><path d="M-140 0 H-92"/><path d="M140 0 H92"/>
+      <path d="M-99 -99 L-65 -65"/><path d="M99 99 L65 65"/><path d="M99 -99 L65 -65"/><path d="M-99 99 L-65 65"/>
+    </g>
+  </g>
+
+  <!-- energy bolt -->
+  <path d="M905 300 L820 445 H880 L845 560 L960 400 H898 Z" fill="#FFD91A" fill-opacity="0.92"/>
+
+  <!-- battery / storage stack -->
+  <g fill="none" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="3">
+    <rect x="150" y="330" width="120" height="46" rx="3"/>
+    <rect x="150" y="386" width="120" height="46" rx="3"/>
+    <rect x="150" y="442" width="120" height="46" rx="3"/>
+  </g>
+  <g fill="#FFD91A" fill-opacity="0.85">
+    <rect x="158" y="338" width="72" height="30" rx="2"/>
+    <rect x="158" y="394" width="48" height="30" rx="2"/>
+    <rect x="158" y="450" width="96" height="30" rx="2"/>
+  </g>
+</svg>

@@ -20,7 +20,7 @@ export default function HomePage() {
         image={IMAGES.hero}
       />
 
-      {/* Six Markets */}
+      {/* Seven Specialist Markets */}
       <section className="py-24 bg-[#F7F7F5]">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <StaggerContainer className="max-w-3xl mb-16">
