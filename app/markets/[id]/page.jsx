@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import MarketMap from '../../../components/MarketMap';
+import RelatedMarkets from '../../../components/RelatedMarkets';
 import { MARKETS } from '../../../lib/data';
 
 export function generateStaticParams() {
@@ -54,6 +56,8 @@ export default function MarketPage({ params }) {
         </div>
       </section>
 
+      <MarketMap market={market} />
+
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="grid lg:grid-cols-2 gap-12">
@@ -80,6 +84,8 @@ export default function MarketPage({ params }) {
           </div>
         </div>
       </section>
+
+      <RelatedMarkets market={market} />
 
       <section className="py-20 bg-[#3F4143]">
         <div className="max-w-5xl mx-auto px-6 lg:px-10 text-center">
