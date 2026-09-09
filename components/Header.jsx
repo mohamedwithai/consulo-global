@@ -24,6 +24,7 @@ const MEGA_CONTENT = {
     { label: 'Exclusive Search', href: '/clients' },
     { label: 'Executive Search', href: '/clients' },
     { label: 'Talent Mapping', href: '/clients' },
+    { label: 'Search Stories', href: '/clients/search-stories' },
     { label: 'Start a Search', href: '/contact' },
   ],
   candidates: [

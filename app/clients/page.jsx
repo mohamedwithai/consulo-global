@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ClientExperience from '../../components/ClientExperience';
+import SearchStoriesTeaser from '../../components/SearchStoriesTeaser';
 
 export const metadata = { title: 'For Clients | Consulo Global' };
 
@@ -84,6 +85,8 @@ export default function ClientsPage() {
       </section>
 
       <ClientExperience />
+
+      <SearchStoriesTeaser />
 
       <section className="py-20 bg-[#F7F7F5]">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
