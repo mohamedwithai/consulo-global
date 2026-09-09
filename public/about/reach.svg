@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" role="img" aria-label="Consulo Global international reach">
+  <defs>
+    <pattern id="mesh" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#FFFFFF" fill-opacity="0.10"/>
+    </pattern>
+    <linearGradient id="arc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFD91A" stop-opacity="0.15"/>
+      <stop offset="0.5" stop-color="#FFD91A" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#FFD91A" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="560" fill="#3F4143"/>
+  <rect width="1000" height="560" fill="url(#mesh)"/>
+
+  <!-- latitude bands -->
+  <g stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="1">
+    <path d="M0 140 H1000"/><path d="M0 280 H1000"/><path d="M0 420 H1000"/>
+  </g>
+
+  <!-- great-circle style connections between the four regions -->
+  <g fill="none" stroke="url(#arc)" stroke-width="2.5">
+    <path d="M190 300 C330 170 470 170 600 235"/>
+    <path d="M600 235 C660 210 700 215 745 245"/>
+    <path d="M745 245 C790 285 830 330 862 372"/>
+    <path d="M190 300 C420 460 660 440 862 372" stroke-opacity="0.5" stroke-dasharray="6 8"/>
+  </g>
+
+  <!-- region nodes -->
+  <g>
+    <g transform="translate(190 300)">
+      <circle r="22" fill="#FFD91A" fill-opacity="0.12"/><circle r="8" fill="#FFD91A"/>
+      <text x="0" y="52" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">United States</text>
+    </g>
+    <g transform="translate(600 235)">
+      <circle r="22" fill="#FFD91A" fill-opacity="0.12"/><circle r="8" fill="#FFD91A"/>
+      <text x="0" y="-34" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">United Kingdom</text>
+    </g>
+    <g transform="translate(745 245)">
+      <circle r="22" fill="#FFD91A" fill-opacity="0.12"/><circle r="8" fill="#FFD91A"/>
+      <text x="30" y="-16" text-anchor="start" font-family="Helvetica,Arial,sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">Continental Europe</text>
+    </g>
+    <g transform="translate(862 372)">
+      <circle r="26" fill="#FFD91A" fill-opacity="0.18"/><circle r="10" fill="#FFD91A"/>
+      <text x="0" y="56" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">Middle East</text>
+      <text x="0" y="76" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="12" letter-spacing="2" fill="#FFD91A">HEADQUARTERS</text>
+    </g>
+  </g>
+</svg>
