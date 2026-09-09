@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { CLIENT_LOGOS } from '../../lib/data';
+import ClientExperience from '../../components/ClientExperience';
 
 export const metadata = { title: 'For Clients | Consulo Global' };
 
@@ -83,24 +83,11 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      {/* Client Logos */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="text-[#FFD91A] text-xs font-bold tracking-[0.2em] mb-4">CLIENT PROOF</div>
-            <h2 className="text-4xl md:text-5xl font-black text-[#3F4143] tracking-tight">Trusted across industrial technology.</h2>
-            <p className="mt-6 text-[#3F4143]/70 leading-relaxed">Consulo supports manufacturers, engineering businesses and specialist industrial organisations across automation, motion control, mechanical power transmission, material handling and associated technologies.</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {CLIENT_LOGOS.map((l) => (
-              <div key={l} className="bg-[#F7F7F5] p-8 flex items-center justify-center border border-[#3F4143]/10">
-                <div className="text-[#3F4143] font-black text-lg tracking-tight">{l}</div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link href="/contact" className="inline-block bg-[#FFD91A] text-[#3F4143] px-8 py-4 text-sm font-bold tracking-[0.15em]">START A SEARCH →</Link>
-          </div>
+      <ClientExperience />
+
+      <section className="py-20 bg-[#F7F7F5]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
+          <Link href="/contact" className="inline-block bg-[#FFD91A] text-[#3F4143] px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-[#3F4143] hover:text-[#FFD91A] transition-colors">START A SEARCH →</Link>
         </div>
       </section>
     </>

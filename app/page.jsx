@@ -4,6 +4,7 @@ import MarketCard from '../components/MarketCard';
 import ProcessSteps from '../components/ProcessSteps';
 import RegionGrid from '../components/RegionGrid';
 import ClientCandidateSplit from '../components/ClientCandidateSplit';
+import ClientLogoStrip from '../components/ClientLogoStrip';
 import { FadeIn, StaggerContainer, StaggerItem } from '../components/AnimatedSection';
 import { IMAGES, MARKETS, INSIGHTS } from '../lib/data';
 
@@ -19,6 +20,8 @@ export default function HomePage() {
         href2="/candidates"
         image={IMAGES.hero}
       />
+
+      <ClientLogoStrip />
 
       {/* Seven Specialist Markets */}
       <section className="py-24 bg-[#F7F7F5]">
