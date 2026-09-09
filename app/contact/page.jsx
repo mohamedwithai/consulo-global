@@ -51,26 +51,26 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="pt-32 pb-20 bg-[#3F4143]">
+      <section className="pt-40 pb-28 bg-charcoal">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="text-[#FFD91A] text-xs font-bold tracking-[0.2em] mb-4">GET IN TOUCH</div>
+          <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">GET IN TOUCH</div>
           <h1 className="text-5xl md:text-7xl font-black text-white leading-[0.95] tracking-tight max-w-5xl">Start a search or career conversation.</h1>
           <p className="mt-8 text-xl text-white/80 max-w-3xl leading-relaxed">Talk to Consulo Global about specialist industrial recruitment, executive search or a confidential career discussion.</p>
         </div>
       </section>
 
-      <section className="py-20 bg-[#F7F7F5]">
+      <section className="py-28 bg-bone">
         <div className="max-w-5xl mx-auto px-6 lg:px-10">
           {!route && !submitted && (
             <>
-              <div className="text-[#FFD91A] text-xs font-bold tracking-[0.2em] mb-4">CHOOSE YOUR ROUTE</div>
-              <h2 className="text-3xl md:text-4xl font-black text-[#3F4143] mb-10 tracking-tight">How can we help?</h2>
+              <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">CHOOSE YOUR ROUTE</div>
+              <h2 className="text-3xl md:text-4xl font-black text-charcoal mb-10 tracking-tight">How can we help?</h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {ROUTES.map((r) => (
-                  <button key={r.id} onClick={() => setRoute(r.id)} className="bg-white p-8 border border-[#3F4143]/10 text-left hover:border-[#FFD91A] hover:shadow-lg transition-all group">
-                    <div className="text-[#FFD91A] text-3xl font-black mb-3 group-hover:scale-110 transition-transform">→</div>
-                    <h3 className="text-xl font-bold text-[#3F4143] mb-2">{r.label}</h3>
-                    <p className="text-sm text-[#3F4143]/70">{r.desc}</p>
+                  <button key={r.id} onClick={() => setRoute(r.id)} className="bg-white p-8 border border-charcoal/10 text-left hover:border-signal hover:shadow-lg transition-all group">
+                    <div className="text-signal text-3xl font-black mb-3 group-hover:scale-110 transition-transform">→</div>
+                    <h3 className="text-xl font-bold text-charcoal mb-2">{r.label}</h3>
+                    <p className="text-sm text-charcoal/70">{r.desc}</p>
                   </button>
                 ))}
               </div>
@@ -79,15 +79,15 @@ export default function ContactPage() {
 
           {route && !submitted && (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <button onClick={() => setRoute(null)} className="text-sm text-[#3F4143]/60 mb-6 hover:text-[#3F4143]">← Back to routes</button>
-              <div className="text-[#FFD91A] text-xs font-bold tracking-[0.2em] mb-4">{ROUTES.find((r) => r.id === route).label}</div>
-              <h2 className="text-3xl md:text-4xl font-black text-[#3F4143] mb-10 tracking-tight">Tell us more.</h2>
-              <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 border border-[#3F4143]/10">
+              <button onClick={() => setRoute(null)} className="text-sm text-charcoal/60 mb-6 hover:text-charcoal">← Back to routes</button>
+              <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">{ROUTES.find((r) => r.id === route).label}</div>
+              <h2 className="text-3xl md:text-4xl font-black text-charcoal mb-10 tracking-tight">Tell us more.</h2>
+              <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 border border-charcoal/10">
                 <div className="grid md:grid-cols-2 gap-6">
                   {FIELDS[route].map((f) => (
                     <div key={f.k} className={f.area ? 'md:col-span-2' : ''}>
-                      <label className="block text-xs font-bold tracking-[0.1em] text-[#3F4143] mb-2">
-                        {f.l} {f.req && <span className="text-[#FFD91A]">*</span>}
+                      <label className="block text-xs font-bold tracking-[0.1em] text-charcoal mb-2">
+                        {f.l} {f.req && <span className="text-signal">*</span>}
                       </label>
                       {f.area ? (
                         <textarea
@@ -95,7 +95,7 @@ export default function ContactPage() {
                           value={form[f.k] || ''}
                           onChange={(e) => setForm({ ...form, [f.k]: e.target.value })}
                           rows={4}
-                          className="w-full border border-[#3F4143]/20 bg-[#F7F7F5] px-4 py-3 text-sm text-[#3F4143] focus:border-[#FFD91A] focus:outline-none transition-colors"
+                          className="w-full border border-charcoal/20 bg-bone px-4 py-3 text-sm text-charcoal focus:border-signal focus:outline-none transition-colors"
                         />
                       ) : (
                         <input
@@ -103,13 +103,13 @@ export default function ContactPage() {
                           required={f.req}
                           value={form[f.k] || ''}
                           onChange={(e) => setForm({ ...form, [f.k]: e.target.value })}
-                          className="w-full border border-[#3F4143]/20 bg-[#F7F7F5] px-4 py-3 text-sm text-[#3F4143] focus:border-[#FFD91A] focus:outline-none transition-colors"
+                          className="w-full border border-charcoal/20 bg-bone px-4 py-3 text-sm text-charcoal focus:border-signal focus:outline-none transition-colors"
                         />
                       )}
                     </div>
                   ))}
                 </div>
-                <button type="submit" className="mt-8 bg-[#FFD91A] text-[#3F4143] px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-[#3F4143] hover:text-[#FFD91A] transition-colors">
+                <button type="submit" className="mt-8 bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-charcoal hover:text-signal transition-colors">
                   SEND MESSAGE →
                 </button>
               </form>
@@ -117,11 +117,11 @@ export default function ContactPage() {
           )}
 
           {submitted && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white p-12 border border-[#FFD91A] text-center">
-              <div className="text-[#FFD91A] text-5xl font-black mb-4">✓</div>
-              <h3 className="text-2xl font-black text-[#3F4143] mb-3">Message received.</h3>
-              <p className="text-[#3F4143]/70 mb-6">Thank you. A member of the Consulo team will be in touch shortly.</p>
-              <button onClick={() => { setSubmitted(false); setRoute(null); setForm({}); }} className="bg-[#3F4143] text-[#FFD91A] px-6 py-3 text-xs font-bold tracking-[0.15em]">SEND ANOTHER MESSAGE</button>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white p-12 border border-signal text-center">
+              <div className="text-signal text-5xl font-black mb-4">✓</div>
+              <h3 className="text-2xl font-black text-charcoal mb-3">Message received.</h3>
+              <p className="text-charcoal/70 mb-6">Thank you. A member of the Consulo team will be in touch shortly.</p>
+              <button onClick={() => { setSubmitted(false); setRoute(null); setForm({}); }} className="bg-charcoal text-signal px-6 py-3 text-xs font-bold tracking-[0.15em]">SEND ANOTHER MESSAGE</button>
             </motion.div>
           )}
         </div>

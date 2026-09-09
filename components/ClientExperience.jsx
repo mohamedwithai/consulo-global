@@ -7,11 +7,11 @@ export default function ClientExperience() {
     <section id="client-experience" className="scroll-mt-24 py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <FadeIn className="max-w-3xl mb-16">
-          <div className="text-[#FFD91A] text-xs font-bold tracking-[0.2em] mb-4">SELECTED CLIENT EXPERIENCE</div>
-          <h2 className="text-4xl md:text-5xl font-black text-[#3F4143] leading-tight tracking-tight">
+          <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">SELECTED CLIENT EXPERIENCE</div>
+          <h2 className="text-4xl md:text-5xl font-black text-charcoal leading-tight tracking-tight">
             Companies we have recruited for across industrial technology.
           </h2>
-          <p className="mt-6 text-lg text-[#3F4143]/70 leading-relaxed">
+          <p className="mt-6 text-lg text-charcoal/70 leading-relaxed">
             Grouped by technology ecosystem rather than listed at random. Several appear in more than one
             group — which is exactly how talent moves between them.
           </p>
@@ -21,8 +21,8 @@ export default function ClientExperience() {
           {CLIENT_ECOSYSTEMS.map((eco) => (
             <div key={eco.id}>
               <div className="flex items-center gap-4 mb-6">
-                <h3 className="text-sm font-bold tracking-[0.15em] uppercase text-[#3F4143]">{eco.title}</h3>
-                <span className="h-px flex-1 bg-[#3F4143]/10" />
+                <h3 className="text-sm font-bold tracking-[0.15em] uppercase text-charcoal">{eco.title}</h3>
+                <span className="h-px flex-1 bg-charcoal/10" />
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                 {eco.companies.map((name, i) => {
@@ -34,7 +34,7 @@ export default function ClientExperience() {
           ))}
         </div>
 
-        <p className="mt-14 text-xs text-[#3F4143]/50 leading-relaxed max-w-3xl">
+        <p className="mt-14 text-xs text-charcoal/50 leading-relaxed max-w-3xl">
           Company names and logos are shown to illustrate the markets Consulo Global recruits across.
           All marks remain the property of their respective owners and are displayed with permission.
         </p>

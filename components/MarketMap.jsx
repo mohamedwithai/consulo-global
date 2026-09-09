@@ -34,7 +34,7 @@ export default function MarketMap({ market }) {
   if (!market.map) return null;
 
   return (
-    <section className="py-28 bg-[#3F4143]">
+    <section className="py-28 bg-charcoal">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -43,7 +43,7 @@ export default function MarketMap({ market }) {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mb-16"
         >
-          <div className="text-[#FFD91A] text-xs font-bold tracking-[0.2em] mb-4">HOW WE MAP THIS MARKET</div>
+          <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">HOW WE MAP THIS MARKET</div>
           <h2 className="text-4xl md:text-5xl font-black text-white leading-tight tracking-tight">
             We don&apos;t search by job title.
           </h2>
@@ -77,11 +77,11 @@ function Tier({ tier, items, index, last }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewport}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="grid lg:grid-cols-[260px_1fr] gap-6 lg:gap-10 border-l-2 border-[#FFD91A] bg-white/[0.04] p-8"
+        className="grid lg:grid-cols-[260px_1fr] gap-6 lg:gap-10 border-l-2 border-signal bg-white/[0.04] p-8"
       >
         <div>
           <div className="flex items-baseline gap-3">
-            <span className="text-[#FFD91A] text-xs font-black tracking-[0.2em]">0{index + 1}</span>
+            <span className="text-signal text-xs font-black tracking-[0.2em]">0{index + 1}</span>
             <h3 className="text-lg font-black text-white tracking-tight">{tier.label}</h3>
           </div>
           <p className="mt-2 text-xs text-white/50 leading-relaxed">{tier.note}</p>
@@ -90,10 +90,10 @@ function Tier({ tier, items, index, last }) {
         <div className="flex flex-wrap items-center gap-x-3 gap-y-3">
           {items.map((item, j) => (
             <span key={item} className="flex items-center gap-3">
-              <span className="border border-white/20 bg-[#3F4143] px-3 py-1.5 text-xs font-medium tracking-wide text-white/90 transition-colors duration-300 hover:border-[#FFD91A] hover:text-[#FFD91A]">
+              <span className="border border-white/20 bg-charcoal px-3 py-1.5 text-xs font-medium tracking-wide text-white/90 transition-colors duration-300 hover:border-signal hover:text-signal">
                 {item}
               </span>
-              {j < items.length - 1 && <span className="text-[#FFD91A]/60 text-xs">→</span>}
+              {j < items.length - 1 && <span className="text-signal/60 text-xs">→</span>}
             </span>
           ))}
         </div>
@@ -106,7 +106,7 @@ function Tier({ tier, items, index, last }) {
             whileInView={{ opacity: 1 }}
             viewport={viewport}
             transition={{ duration: 0.4, delay: index * 0.1 + 0.15 }}
-            className="text-[#FFD91A] text-xl leading-none"
+            className="text-signal text-xl leading-none"
           >
             ↓
           </motion.span>

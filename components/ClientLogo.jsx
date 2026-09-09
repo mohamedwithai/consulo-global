@@ -16,7 +16,7 @@ export default function ClientLogo({ client, index = 0, compact = false }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={viewport}
       transition={{ duration: 0.45, delay: Math.min(index, 8) * 0.05 }}
-      className={`group flex items-center justify-center border border-[#3F4143]/10 bg-white transition-colors duration-300 hover:border-[#FFD91A] ${
+      className={`group flex items-center justify-center border border-charcoal/10 bg-white transition-colors duration-300 hover:border-signal ${
         compact ? 'h-20 px-5' : 'h-28 px-6'
       }`}
     >
@@ -41,13 +41,13 @@ function Wordmark({ name, compact }) {
   return (
     <div className="flex flex-col items-center gap-2 text-center">
       <span
-        className={`font-black uppercase leading-tight tracking-tight text-[#3F4143]/70 transition-colors duration-300 group-hover:text-[#3F4143] ${
+        className={`font-black uppercase leading-tight tracking-tight text-charcoal/70 transition-colors duration-300 group-hover:text-charcoal ${
           compact ? 'text-sm' : 'text-base'
         }`}
       >
         {name}
       </span>
-      <span className="h-[2px] w-6 bg-[#FFD91A] transition-all duration-300 group-hover:w-10" />
+      <span className="h-[2px] w-6 bg-signal transition-all duration-300 group-hover:w-10" />
     </div>
   );
 }

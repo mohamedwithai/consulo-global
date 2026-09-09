@@ -28,12 +28,12 @@ export default function Hero({ title, subtitle, cta1, cta2, href1, href2, image 
         transition={{ duration: 1.4, ease: easeOut }}
       >
         <Image src={image} alt="" fill priority className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#3F4143]/95 via-[#3F4143]/70 to-[#3F4143]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/95 via-charcoal/70 to-charcoal/30" />
       </motion.div>
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full pt-20">
         <motion.div variants={containerVariants} initial="hidden" animate="visible">
           <motion.div variants={itemVariants}>
-            <div className="inline-block bg-[#FFD91A] text-[#3F4143] px-3 py-1 text-xs font-bold tracking-[0.2em] mb-8">
+            <div className="inline-block bg-signal text-charcoal px-3 py-1 text-xs font-bold tracking-[0.2em] mb-8">
               INDUSTRIAL TECHNOLOGY SEARCH
             </div>
           </motion.div>
@@ -51,7 +51,7 @@ export default function Hero({ title, subtitle, cta1, cta2, href1, href2, image 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
                 <Link
                   href={href1}
-                  className="bg-[#FFD91A] text-[#3F4143] px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white transition-colors"
+                  className="bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white transition-colors"
                 >
                   {cta1} →
                 </Link>
@@ -61,7 +61,7 @@ export default function Hero({ title, subtitle, cta1, cta2, href1, href2, image 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
                 <Link
                   href={href2}
-                  className="border-2 border-white text-white px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white hover:text-[#3F4143] transition-colors"
+                  className="border-2 border-white text-white px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white hover:text-charcoal transition-colors"
                 >
                   {cta2} →
                 </Link>
@@ -81,7 +81,7 @@ export default function Hero({ title, subtitle, cta1, cta2, href1, href2, image 
           transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
           className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2"
         >
-          <motion.div className="w-1 h-2 bg-[#FFD91A] rounded-full" />
+          <motion.div className="w-1 h-2 bg-signal rounded-full" />
         </motion.div>
       </motion.div>
     </section>

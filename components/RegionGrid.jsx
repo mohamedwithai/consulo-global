@@ -7,21 +7,21 @@ import { REGIONS } from '../lib/data';
 
 export default function RegionGrid() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <FadeIn>
-            <div className="text-[#FFD91A] text-xs font-bold tracking-[0.2em] mb-4">INTERNATIONAL REACH</div>
-            <h2 className="text-4xl md:text-5xl font-black text-[#3F4143] leading-tight tracking-tight mb-6">
+            <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">INTERNATIONAL REACH</div>
+            <h2 className="text-4xl md:text-5xl font-black text-charcoal leading-tight tracking-tight mb-6">
               Four regions. One specialist search methodology.
             </h2>
-            <p className="text-lg text-[#3F4143]/70 leading-relaxed mb-8">
+            <p className="text-lg text-charcoal/70 leading-relaxed mb-8">
               Headquartered in Dubai, Consulo Global operates across the United States, United Kingdom, Continental Europe and Middle East — mapping talent, competitors and routes to market for industrial technology businesses wherever they operate.
             </p>
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="/contact"
-                className="inline-block bg-[#FFD91A] text-[#3F4143] px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-[#3F4143] hover:text-[#FFD91A] transition-colors"
+                className="inline-block bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-charcoal hover:text-signal transition-colors"
               >
                 TALK TO CONSULO →
               </Link>
@@ -33,7 +33,7 @@ export default function RegionGrid() {
                 <motion.div
                   whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 1 : -1 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-                  className={`p-8 cursor-default ${i % 2 === 0 ? 'bg-[#3F4143] text-white' : 'bg-[#FFD91A] text-[#3F4143]'}`}
+                  className={`p-8 cursor-default ${i % 2 === 0 ? 'bg-charcoal text-white' : 'bg-signal text-charcoal'}`}
                 >
                   <motion.div
                     className="text-4xl font-black mb-2"

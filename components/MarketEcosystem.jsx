@@ -17,10 +17,10 @@ const NODES = MARKET_ECOSYSTEM.map((id) => MARKETS.find((m) => m.id === id)).fil
 
 export default function MarketEcosystem() {
   return (
-    <section className="py-28 bg-[#3F4143]">
+    <section className="py-28 bg-charcoal">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <FadeIn className="max-w-3xl mb-16">
-          <div className="text-[#FFD91A] text-xs font-bold tracking-[0.2em] mb-4">CONNECTED MARKETS</div>
+          <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">CONNECTED MARKETS</div>
           <h2 className="text-4xl md:text-5xl font-black text-white leading-tight tracking-tight">
             These markets don&apos;t operate independently.
           </h2>
@@ -51,16 +51,16 @@ function Node({ market, index, connector }) {
       >
         <Link
           href={`/markets/${market.id}`}
-          className="group flex h-full flex-col justify-between border border-white/15 hover:border-[#FFD91A] bg-white/[0.03] hover:bg-white/[0.06] p-8 transition-colors duration-300"
+          className="group flex h-full flex-col justify-between border border-white/15 hover:border-signal bg-white/[0.03] hover:bg-white/[0.06] p-8 transition-colors duration-300"
         >
           <div>
-            <div className="text-[#FFD91A] text-xs font-bold tracking-[0.2em] mb-4">0{index + 1}</div>
-            <h3 className="text-2xl font-black text-white leading-tight group-hover:text-[#FFD91A] transition-colors">
+            <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">0{index + 1}</div>
+            <h3 className="text-2xl font-black text-white leading-tight group-hover:text-signal transition-colors">
               {market.title}
             </h3>
             <p className="mt-4 text-sm text-white/60 leading-relaxed">{market.tagline}</p>
           </div>
-          <div className="mt-8 text-xs font-bold tracking-[0.15em] text-white/50 group-hover:text-[#FFD91A] transition-colors">
+          <div className="mt-8 text-xs font-bold tracking-[0.15em] text-white/50 group-hover:text-signal transition-colors">
             EXPLORE MARKET →
           </div>
         </Link>
@@ -81,8 +81,8 @@ function Connector({ technologies, delay }) {
       className="flex flex-col items-center justify-center gap-3 lg:w-44 lg:px-4 py-2"
       aria-hidden="true"
     >
-      <div className="hidden lg:block text-[#FFD91A] text-2xl leading-none">↔</div>
-      <div className="lg:hidden text-[#FFD91A] text-2xl leading-none">↕</div>
+      <div className="hidden lg:block text-signal text-2xl leading-none">↔</div>
+      <div className="lg:hidden text-signal text-2xl leading-none">↕</div>
       <div className="text-[10px] text-white/50 tracking-[0.1em] text-center leading-relaxed">
         {technologies.join(' · ')}
       </div>
