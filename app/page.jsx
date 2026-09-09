@@ -6,7 +6,7 @@ import RegionGrid from '../components/RegionGrid';
 import ClientCandidateSplit from '../components/ClientCandidateSplit';
 import ClientLogoStrip from '../components/ClientLogoStrip';
 import { FadeIn, StaggerContainer, StaggerItem } from '../components/AnimatedSection';
-import { IMAGES, MARKETS, INSIGHTS } from '../lib/data';
+import { IMAGES, MARKETS, PUBLISHED_INSIGHTS } from '../lib/data';
 
 export default function HomePage() {
   return (
@@ -76,7 +76,7 @@ export default function HomePage() {
             </StaggerItem>
           </StaggerContainer>
           <StaggerContainer className="grid md:grid-cols-3 gap-6" stagger={0.15}>
-            {INSIGHTS.slice(0, 3).map((ins) => (
+            {PUBLISHED_INSIGHTS.slice(0, 3).map((ins) => (
               <StaggerItem key={ins.title}>
                 <Link href="/insights" className="group cursor-pointer block p-4 -m-4 rounded hover:bg-bone transition-colors duration-300">
                   <div className="text-signal text-xs font-bold tracking-[0.2em] mb-3">{ins.category}</div>
