@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consulo v2 Change Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+:root{
+  --ground:#FAFAF8; --surface:#FFFFFF; --surface-2:#F3F3EF;
+  --ink:#26282A; --ink-2:#55585A; --ink-3:#83868A;
+  --rule:#E3E3DE; --rule-2:#CFCFC9;
+  --signal:#FFD91A; --charcoal:#3F4143;
+  --add:#3b82f6; --rm:#ef4444; --mark:#fef08a; --mark-ink:#26282A;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#1B1D1F; --surface:#232527; --surface-2:#2B2E30;
+    --ink:#ECECE8; --ink-2:#B0B3B5; --ink-3:#83868A;
+    --rule:#35383A; --rule-2:#454849;
+    --mark:#fde047; --mark-ink:#1B1D1F;
+    --add:#60a5fa; --rm:#f87171;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#1B1D1F; --surface:#232527; --surface-2:#2B2E30;
+  --ink:#ECECE8; --ink-2:#B0B3B5; --ink-3:#83868A;
+  --rule:#35383A; --rule-2:#454849;
+  --mark:#fde047; --mark-ink:#1B1D1F;
+  --add:#60a5fa; --rm:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+mark{background:var(--mark)!important;color:var(--mark-ink)!important}
+a{color:inherit}
+code,.mono{font-family:var(--mono);font-size:.86em;font-variant-ligatures:none}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead .wrap{padding-top:44px;padding-bottom:36px}
+.brandbar{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.brandmark{width:26px;height:26px;background:var(--signal);color:#3F4143;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none}
+.brandtext{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+h1{font-size:clamp(30px,4.2vw,46px);line-height:1.08;margin:0 0 14px;font-weight:700;letter-spacing:-.022em;text-wrap:balance;max-width:20ch}
+.standfirst{font-family:var(--serif);font-size:18px;line-height:1.55;color:var(--ink-2);max-width:62ch;margin:0}
+
+.facts{display:flex;flex-wrap:wrap;gap:0;margin-top:32px;border:1px solid var(--rule)}
+.fact{flex:1 1 150px;padding:14px 18px;border-right:1px solid var(--rule)}
+.fact:last-child{border-right:0}
+.fact dt{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:0 0 5px}
+.fact dd{margin:0;font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.fact dd small{font-size:12px;font-weight:400;color:var(--ink-3);letter-spacing:0}
+
+.legend{margin-top:26px;padding:16px 18px;background:var(--surface-2);border-left:3px solid var(--signal)}
+.legend h2{font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 10px;color:var(--ink-2);font-weight:600}
+.legend ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:13.5px;color:var(--ink-2)}
+
+.layout{display:grid;grid-template-columns:216px minmax(0,1fr);gap:52px;align-items:start;padding:52px 0 72px}
+.toc{position:sticky;top:24px}
+.toc h2{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px;font-weight:600}
+.toc ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.toc li{border-bottom:1px solid var(--rule)}
+.toc a{display:grid;grid-template-columns:26px 1fr;gap:8px;padding:9px 0;text-decoration:none;color:var(--ink-2);font-size:13px;line-height:1.35}
+.toc a:hover{color:var(--ink)}
+.toc a .n{font-family:var(--mono);font-size:11px;color:var(--ink-3);padding-top:1px}
+.toc a:hover .n{color:var(--signal)}
+
+section.item{border-top:2px solid var(--ink);padding-top:22px;margin-bottom:60px;scroll-margin-top:20px}
+.itemhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:6px}
+.itemnum{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink-3)}
+.sha{font-family:var(--mono);font-size:11.5px;background:var(--surface-2);border:1px solid var(--rule);padding:2px 7px;color:var(--ink-2)}
+h3.itemtitle{font-size:25px;font-weight:700;letter-spacing:-.016em;margin:0 0 20px;line-height:1.2;text-wrap:balance}
+h4{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:26px 0 10px}
+
+blockquote{margin:0;padding:16px 20px;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--rule-2);font-family:var(--serif);font-size:16px;line-height:1.6;color:var(--ink-2)}
+blockquote p{margin:0 0 10px;max-width:66ch}
+blockquote p:last-child{margin-bottom:0}
+blockquote .ell{color:var(--ink-3)}
+
+.prose p{margin:0 0 12px;max-width:70ch;color:var(--ink-2)}
+.prose p:last-child{margin-bottom:0}
+.prose strong{color:var(--ink);font-weight:600}
+
+.tblwrap{overflow-x:auto;border:1px solid var(--rule);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+th{text-align:left;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:9px 14px;border-bottom:1px solid var(--rule);white-space:nowrap;background:var(--surface-2)}
+td{padding:10px 14px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td.path{font-family:var(--mono);font-size:12.5px;color:var(--ink);white-space:nowrap}
+td.lines{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink-2)}
+td.what{min-width:280px}
+
+.tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:2px 7px;white-space:nowrap;border:1px solid}
+.tag.new{color:var(--add);border-color:var(--add)}
+.tag.mod{color:#A16207;border-color:#CA8A04;background:rgba(254,240,138,.35)}
+.tag.del{color:var(--rm);border-color:var(--rm)}
+:root:not([data-theme="light"]) .tag.mod{color:#FDE047;border-color:#A16207;background:rgba(161,98,7,.22)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .tag.mod{color:#A16207;border-color:#CA8A04;background:rgba(254,240,138,.35)}}
+:root[data-theme="dark"] .tag.mod{color:#FDE047;border-color:#A16207;background:rgba(161,98,7,.22)}
+
+.open{border-top:2px solid var(--ink);padding-top:22px}
+.open ol{margin:0;padding-left:20px}
+.open li{margin-bottom:14px;color:var(--ink-2);max-width:74ch}
+.open li strong{color:var(--ink);font-weight:600}
+
+footer{border-top:1px solid var(--rule);background:var(--surface);color:var(--ink-3);font-size:12.5px}
+footer .wrap{padding:22px 28px;display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;gap:0;padding-top:34px}
+  .toc{position:static;margin-bottom:44px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+a:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="brandbar">
+      <span class="brandmark">C</span>
+      <span class="brandtext">Consulo Global &middot; Website v2</span>
+    </div>
+    <h1>Client feedback v2: what changed and where</h1>
+    <p class="standfirst">Every item in the v2 feedback document, paired with the correction made and the exact file and line numbers it was made at. Seven feedback sections, seven commits, one to one.</p>
+
+    <dl class="facts">
+      <div class="fact"><dt>Feedback sections</dt><dd>7</dd></div>
+      <div class="fact"><dt>Commits</dt><dd>7 <small>+1 housekeeping</small></dd></div>
+      <div class="fact"><dt>Files changed</dt><dd>33</dd></div>
+      <div class="fact"><dt>Lines</dt><dd>+1,430 <small>&minus;251</small></dd></div>
+      <div class="fact"><dt>Build</dt><dd>18 routes <small>passing</small></dd></div>
+    </dl>
+
+    <div class="legend">
+      <h2>How to read this page</h2>
+      <ul>
+        <li><mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">Yellow</mark> &mdash; text or code modified in place</li>
+        <li><span style="border-bottom: 2px solid #3b82f6;">Blue underline</span> &mdash; newly added</li>
+        <li><span style="border-bottom: 2px solid #ef4444;">Red underline</span> &mdash; removed or replaced</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class="wrap layout">
+
+  <nav class="toc" aria-label="Feedback sections">
+    <h2>Sections</h2>
+    <ol>
+      <li><a href="#s1"><span class="n">01</span><span>Specialist Markets &mdash; Electrification</span></a></li>
+      <li><a href="#s2"><span class="n">02</span><span>Client Experience / Logos</span></a></li>
+      <li><a href="#s3"><span class="n">03</span><span>Individual Market Pages</span></a></li>
+      <li><a href="#s4"><span class="n">04</span><span>About / Company Positioning</span></a></li>
+      <li><a href="#s5"><span class="n">05</span><span>Search Stories</span></a></li>
+      <li><a href="#s6"><span class="n">06</span><span>Overall Visual Development</span></a></li>
+      <li><a href="#s7"><span class="n">07</span><span>Insights</span></a></li>
+      <li><a href="#open"><span class="n">&mdash;</span><span>Open items for you</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+  <!-- ============ 01 ============ -->
+  <section class="item" id="s1">
+    <div class="itemhead">
+      <span class="itemnum">SECTION 01</span>
+      <span class="sha">0f88f63</span>
+    </div>
+    <h3 class="itemtitle">Specialist Markets &mdash; adding Electrification &amp; Energy Technologies</h3>
+
+    <h4>Original client feedback</h4>
+    <blockquote>
+      <p>&ldquo;I&rsquo;d like to add a seventh specialist market: <strong>ELECTRIFICATION &amp; ENERGY TECHNOLOGIES</strong>. <span class="ell">[&hellip;]</span> I&rsquo;ve deliberately changed the existing &lsquo;Combustion, Thermal &amp; Energy&rsquo; category to &lsquo;Combustion &amp; Thermal Technologies&rsquo; so we&rsquo;re not using &lsquo;Energy&rsquo; across two separate categories.&rdquo;</p>
+      <p>&ldquo;It could also be interesting visually to communicate the relationship between Automation &amp; Motion Control &harr; Electrification &amp; Energy Technologies &harr; Mechanical Power Transmission rather than treating every market as existing completely independently.&rdquo;</p>
+    </blockquote>
+
+    <h4>Correction made</h4>
+    <div class="prose">
+      <p><code>lib/data.js</code> is the single source of truth for the header mega&#8209;menu, footer, homepage grid, <code>/markets</code> and the dynamic <code>/markets/[id]</code> routes, so <span style="border-bottom: 2px solid #3b82f6;">the seventh market was added once</span> and propagated to all of them. Markets are now in your stated order, putting the three drive&#8209;related markets consecutively.</p>
+      <p>Both renames are in. On the combustion entry I also replaced <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">&ldquo;Energy Systems&rdquo;</mark> in its technology list with &ldquo;Thermal Efficiency&rdquo; and &ldquo;Waste Heat Recovery&rdquo;, so the category doesn&rsquo;t reintroduce the &ldquo;Energy&rdquo; overlap through its content.</p>
+      <p>The crossover visual reads horizontally on desktop and stacked on mobile, with the shared technologies printed on the connectors &mdash; <strong>Variable Speed Drives, Servo Motors, Power Electronics</strong> between Automation and Electrification; <strong>Electric Motors, Electric Drivetrains, High&#8209;Efficiency Motors</strong> between Electrification and Power Transmission. Those are drawn from the three markets&rsquo; own technology lists, so the diagram makes an argument rather than drawing arrows.</p>
+    </div>
+
+    <h4>Exact locations</h4>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>File</th><th>Lines</th><th>Type</th><th class="what">Change</th></tr></thead>
+        <tbody>
+          <tr><td class="path">lib/data.js</td><td class="lines">49&ndash;64</td><td><span class="tag new">Added</span></td><td class="what"><span style="border-bottom: 2px solid #3b82f6;">New <code>electrification</code> market</span> &mdash; your twelve technologies verbatim, plus talent, appointments and industries written to match the other six</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">117&ndash;118</td><td><span class="tag mod">Modified</span></td><td class="what"><span style="border-bottom: 2px solid #ef4444;">&ldquo;Combustion, Thermal &amp; Energy&rdquo;</span> &rarr; <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">&ldquo;Combustion &amp; Thermal Technologies&rdquo;</mark>; slug <code>combustion-energy</code> &rarr; <code>combustion-thermal</code></td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">16</td><td><span class="tag mod">Modified</span></td><td class="what"><span style="border-bottom: 2px solid #ef4444;">&ldquo;Industrial Automation &amp; Motion Control&rdquo;</span> &rarr; <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">&ldquo;Automation &amp; Motion Control&rdquo;</mark></td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">13&ndash;133</td><td><span class="tag mod">Modified</span></td><td class="what">All seven markets reordered into your stated sequence</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">29, 46, 63, 80,<br>97, 114, 131</td><td><span class="tag new">Added</span></td><td class="what"><code>related[]</code> on every market, naming its two closest crossovers</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">137</td><td><span class="tag new">Added</span></td><td class="what"><code>MARKET_ECOSYSTEM</code> &mdash; the three markets you asked to connect</td></tr>
+          <tr><td class="path">components/MarketEcosystem.jsx</td><td class="lines">1&ndash;91</td><td><span class="tag new">New file</span></td><td class="what">The <span style="border-bottom: 2px solid #3b82f6;">&harr; crossover diagram</span>, with shared technologies on the connectors</td></tr>
+          <tr><td class="path">app/markets/page.jsx</td><td class="lines">2, 29</td><td><span class="tag mod">Modified</span></td><td class="what">Diagram wired into <code>/markets</code>; intro copy now says <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">&ldquo;seven specialist markets&rdquo;</mark></td></tr>
+          <tr><td class="path">public/markets/electrification.svg</td><td class="lines">1&ndash;57</td><td><span class="tag new">New file</span></td><td class="what">Placeholder artwork in the brand palette &mdash; see open item 2</td></tr>
+          <tr><td class="path">next.config.mjs</td><td class="lines">13&ndash;14</td><td><span class="tag new">Added</span></td><td class="what">Serve first&#8209;party SVG through <code>next/image</code>, under a CSP that blocks scripting inside SVG</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 02 ============ -->
+  <section class="item" id="s2">
+    <div class="itemhead">
+      <span class="itemnum">SECTION 02</span>
+      <span class="sha">cf5cb83</span>
+    </div>
+    <h3 class="itemtitle">Client Experience / Logos</h3>
+
+    <h4>Original client feedback</h4>
+    <blockquote>
+      <p>&ldquo;Rather than simply displaying company names, I&rsquo;d like us to use the actual company logos, subject to the appropriate permissions, and present this section as <strong>SELECTED CLIENT EXPERIENCE</strong> &mdash; Companies we have recruited for across industrial technology.&rdquo;</p>
+      <p>&ldquo;Please also add <strong>Pilz</strong> and <strong>Zimmer Group</strong> to the list <span class="ell">[&hellip;]</span> Rather than displaying these randomly, I&rsquo;d like them grouped by their relevant technology ecosystems. There will be some crossover, which is absolutely fine.&rdquo;</p>
+      <p>&ldquo;I&rsquo;d also like a smaller selection of the strongest/most recognisable logos displayed on the homepage as an immediate credibility piece, linking through to the fuller Client Experience section.&rdquo;</p>
+    </blockquote>
+
+    <h4>Correction made</h4>
+    <div class="prose">
+      <p>The old implementation was <span style="border-bottom: 2px solid #ef4444;">a flat array of ten strings rendered as text tiles</span>, which couldn&rsquo;t support grouping (companies need to appear more than once) or real logos. It was replaced with a company list carrying a slug, logo path and featured flag, plus your four ecosystem groups.</p>
+      <p>On real logos: I can&rsquo;t embed third&#8209;party trademarks without the permissions you mention, so the section is built to <em>expect</em> them and degrade honestly until they arrive. Each company renders supplied artwork when a logo path is set, and a designed wordmark until then &mdash; <strong>both states occupy an identical box</strong>, so you can switch companies on one at a time as permission comes in with no half&#8209;finished transitional state. Logos render desaturated and lift to colour on hover, keeping twelve brand palettes from fighting the charcoal/yellow scheme.</p>
+      <p>The homepage strip sits <strong>directly beneath the hero</strong> rather than further down &mdash; as a credibility piece it needs to land before the visitor wonders whether you&rsquo;ve done this before.</p>
+    </div>
+
+    <h4>Exact locations</h4>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>File</th><th>Lines</th><th>Type</th><th class="what">Change</th></tr></thead>
+        <tbody>
+          <tr><td class="path">lib/data.js</td><td class="lines">209&ndash;222</td><td><span class="tag mod">Replaced</span></td><td class="what"><span style="border-bottom: 2px solid #ef4444;"><code>CLIENT_LOGOS</code> (10 strings)</span> &rarr; <span style="border-bottom: 2px solid #3b82f6;"><code>CLIENTS</code> (12 records)</span></td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">220, 221</td><td><span class="tag new">Added</span></td><td class="what"><span style="border-bottom: 2px solid #3b82f6;">Pilz</span> and <span style="border-bottom: 2px solid #3b82f6;">Zimmer Group</span></td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">226&ndash;247</td><td><span class="tag new">Added</span></td><td class="what">Your four ecosystem groups. Deliberate repeats preserved: WEG in two groups (<code>:235</code>, <code>:240</code>), Zimmer Group in two, Regina / Tsubakimoto / John King Chain in two</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">249, 251</td><td><span class="tag new">Added</span></td><td class="what"><code>getClient()</code> lookup and <code>FEATURED_CLIENTS</code> for the homepage strip</td></tr>
+          <tr><td class="path">components/ClientLogo.jsx</td><td class="lines">1&ndash;53</td><td><span class="tag new">New file</span></td><td class="what">Renders real artwork when present, wordmark until then; grayscale &rarr; colour on hover</td></tr>
+          <tr><td class="path">components/ClientExperience.jsx</td><td class="lines">1&ndash;44</td><td><span class="tag new">New file</span></td><td class="what">Full grouped section, headed <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">SELECTED CLIENT EXPERIENCE</mark> with your strapline as the heading</td></tr>
+          <tr><td class="path">components/ClientLogoStrip.jsx</td><td class="lines">1&ndash;36</td><td><span class="tag new">New file</span></td><td class="what">Homepage strip &mdash; WEG, Rossi, Tsubakimoto, THK, Habasit, Pilz</td></tr>
+          <tr><td class="path">app/page.jsx</td><td class="lines">7, 24</td><td><span class="tag new">Added</span></td><td class="what">Strip placed immediately after the hero</td></tr>
+          <tr><td class="path">app/clients/page.jsx</td><td class="lines">4, 92</td><td><span class="tag mod">Replaced</span></td><td class="what"><span style="border-bottom: 2px solid #ef4444;">Old text&#8209;tile grid removed</span>; grouped section in its place, anchored <code>#client-experience</code></td></tr>
+          <tr><td class="path">public/logos/README.md</td><td class="lines">1&ndash;27</td><td><span class="tag new">New file</span></td><td class="what">Three&#8209;step drop&#8209;in process plus artwork guidance (mono versions, trimmed whitespace, SVG preferred, never recolour a third&#8209;party mark)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 03 ============ -->
+  <section class="item" id="s3">
+    <div class="itemhead">
+      <span class="itemnum">SECTION 03</span>
+      <span class="sha">95168b2</span>
+    </div>
+    <h3 class="itemtitle">Individual Specialist Market Pages</h3>
+
+    <h4>Original client feedback</h4>
+    <blockquote>
+      <p>&ldquo;I like the direction of the individual market pages, but I think these need slightly more depth and visual interest. One idea I particularly like is adding a visual <strong>&lsquo;How We Map This Market&rsquo;</strong> section to each page.&rdquo;</p>
+      <p>&ldquo;Direct Technology &rarr; Adjacent Technology &rarr; Target Organisations &rarr; Target Talent <span class="ell">[&hellip;]</span> We can create equivalent maps for all seven specialist markets. This would visually demonstrate that Consulo understands how talent moves between technologies, competitors and adjacent markets rather than simply searching by job title.&rdquo;</p>
+    </blockquote>
+
+    <h4>Correction made</h4>
+    <div class="prose">
+      <p>Your Automation example is used <strong>verbatim</strong>. I then wrote equivalent maps for the other six, and the discipline throughout was that the <em>Adjacent Technology</em> row has to be defensible &mdash; it is the row carrying your whole argument.</p>
+      <p>So for Mechanical Power Transmission, adjacency is electric motors, VSDs, belting, linear motion and brakes/clutches: things specified on the same machine by the same buyer. For Distribution &amp; MRO the direct row is product categories and the adjacent row is service and reliability, because that is where the commercial conversation differs. For Combustion &amp; Thermal, adjacency runs into furnaces, waste heat recovery and emissions rather than process instrumentation, which is a different sale.</p>
+      <p>Each tier carries a one&#8209;line note &mdash; <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">&ldquo;where transferable experience genuinely exists&rdquo;</mark>, <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">&ldquo;the businesses that employ the people we&rsquo;re looking for&rdquo;</mark>. Without them the section reads as four more keyword lists; with them it reads as method. The section is headed <strong>&ldquo;We don&rsquo;t search by job title&rdquo;</strong>, stating the argument the diagram makes.</p>
+    </div>
+
+    <h4>Exact locations</h4>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>File</th><th>Lines</th><th>Type</th><th class="what">Change</th></tr></thead>
+        <tbody>
+          <tr><td class="path">lib/data.js</td><td class="lines">23, 40, 57, 74,<br>91, 108, 125</td><td><span class="tag new">Added</span></td><td class="what"><span style="border-bottom: 2px solid #3b82f6;"><code>map: {}</code> on all seven markets</span> &mdash; four arrays each: <code>direct</code>, <code>adjacent</code>, <code>organisations</code>, <code>talent</code></td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">23&ndash;28</td><td><span class="tag new">Added</span></td><td class="what">Automation map &mdash; your example content, unchanged</td></tr>
+          <tr><td class="path">components/MarketMap.jsx</td><td class="lines">1&ndash;117</td><td><span class="tag new">New file</span></td><td class="what">Four tiers on a charcoal band; yellow &rarr; between items, &darr; between tiers, matching your sketch</td></tr>
+          <tr><td class="path">components/MarketMap.jsx</td><td class="lines">6&ndash;27</td><td><span class="tag new">Added</span></td><td class="what">The per&#8209;tier explanatory notes</td></tr>
+          <tr><td class="path">components/RelatedMarkets.jsx</td><td class="lines">1&ndash;42</td><td><span class="tag new">New file</span></td><td class="what">Two&#8209;card crossover strip, driven by the <code>related[]</code> added in section 01</td></tr>
+          <tr><td class="path">app/markets/[id]/page.jsx</td><td class="lines">4&ndash;5, 77, 106</td><td><span class="tag mod">Modified</span></td><td class="what">Both sections slotted in &mdash; <span style="border-bottom: 2px solid #3b82f6;">all seven pages gain them at once</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 04 ============ -->
+  <section class="item" id="s4">
+    <div class="itemhead">
+      <span class="itemnum">SECTION 04</span>
+      <span class="sha">9ccdebe</span>
+    </div>
+    <h3 class="itemtitle">About / Company Positioning</h3>
+
+    <h4>Original client feedback</h4>
+    <blockquote>
+      <p>&ldquo;I don&rsquo;t want any individual Director or Founder photography on the website. I want Consulo Global to have a strong corporate identity in its own right <span class="ell">[&hellip;]</span> The objective is to build Consulo Global as an international specialist search brand rather than a personality&#8209;led recruitment consultancy.&rdquo;</p>
+      <p>&ldquo;Visually, rather than individual photography, I&rsquo;d prefer strong industrial imagery, technology&#8209;led graphics, market maps and international/geographical elements <span class="ell">[&hellip;]</span> The people behind the business can obviously still be found and connected with through LinkedIn, but I don&rsquo;t want individual profiles to become part of the main visual identity.&rdquo;</p>
+    </blockquote>
+
+    <h4>Correction made</h4>
+    <div class="prose">
+      <p>The old page gave half its main section to a founder card &mdash; <span style="border-bottom: 2px solid #ef4444;">photograph, name, job title and a personal philosophy quote</span>. Removing only the photo would have left a name&#8209;and&#8209;title block that still reads as a personality page, so the whole card went. The founder image was also <strong>deleted from the image manifest</strong> rather than merely unused, so it can&rsquo;t be reintroduced by accident.</p>
+      <p>The page was rebuilt around your six themes, in your order. Two decisions inside are worth flagging. The search philosophy is <span style="border-bottom: 2px solid #3b82f6;">four written principles</span>, not a reuse of the five Understand/Map/Engage/Assess/Deliver cards &mdash; those already appear on <code>/clients</code>, and repeating them here would be exactly the card repetition you flagged in section 06. The technologies section is <span style="border-bottom: 2px solid #3b82f6;">an editorial index</span> of the seven markets rather than a third card grid, for the same reason.</p>
+      <p>The people question is one line at the very bottom of the page &mdash; findable, playing no part in the visual identity.</p>
+    </div>
+
+    <h4>Exact locations</h4>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>File</th><th>Lines</th><th>Type</th><th class="what">Change</th></tr></thead>
+        <tbody>
+          <tr><td class="path">app/about/page.jsx</td><td class="lines">&mdash;</td><td><span class="tag del">Removed</span></td><td class="what"><span style="border-bottom: 2px solid #ef4444;">Founder card: photograph, name, &ldquo;Founder &amp; Managing Director&rdquo;, personal quote</span></td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">1&ndash;11</td><td><span class="tag del">Removed</span></td><td class="what"><span style="border-bottom: 2px solid #ef4444;"><code>IMAGES.founder</code> deleted from the manifest</span> so it cannot return</td></tr>
+          <tr><td class="path">app/about/page.jsx</td><td class="lines">1&ndash;214</td><td><span class="tag mod">Rewritten</span></td><td class="what">Rebuilt from 56 to 214 lines around your six themes</td></tr>
+          <tr><td class="path">app/about/page.jsx</td><td class="lines">65</td><td><span class="tag new">Added</span></td><td class="what">Theme 1 &mdash; evolution from Consulo First into Consulo Global</td></tr>
+          <tr><td class="path">app/about/page.jsx</td><td class="lines">8&ndash;24, 93</td><td><span class="tag new">Added</span></td><td class="what">Theme 2 &mdash; specialist industrial heritage and market knowledge</td></tr>
+          <tr><td class="path">app/about/page.jsx</td><td class="lines">26&ndash;47, 115</td><td><span class="tag new">Added</span></td><td class="what">Theme 3 &mdash; search philosophy, as four principles</td></tr>
+          <tr><td class="path">app/about/page.jsx</td><td class="lines">139</td><td><span class="tag new">Added</span></td><td class="what">Theme 4 &mdash; the technologies and industries we understand</td></tr>
+          <tr><td class="path">app/about/page.jsx</td><td class="lines">162&ndash;168</td><td><span class="tag new">Added</span></td><td class="what">Theme 5 &mdash; international reach, with the geographical graphic</td></tr>
+          <tr><td class="path">app/about/page.jsx</td><td class="lines">194</td><td><span class="tag new">Added</span></td><td class="what">Theme 6 &mdash; ambition as a global industrial technology search business</td></tr>
+          <tr><td class="path">app/about/page.jsx</td><td class="lines">207</td><td><span class="tag new">Added</span></td><td class="what">Single <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">LinkedIn line</mark>, deliberately out of the visual identity</td></tr>
+          <tr><td class="path">public/about/reach.svg</td><td class="lines">1&ndash;49</td><td><span class="tag new">New file</span></td><td class="what">Four regions plotted with great&#8209;circle connections, Dubai marked as HQ &mdash; the visual weight where the photograph used to be</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 05 ============ -->
+  <section class="item" id="s5">
+    <div class="itemhead">
+      <span class="itemnum">SECTION 05</span>
+      <span class="sha">132eaeb</span>
+    </div>
+    <h3 class="itemtitle">Search Stories</h3>
+
+    <h4>Original client feedback</h4>
+    <blockquote>
+      <p>&ldquo;I&rsquo;d like to add a Search Stories section, ideally sitting underneath Clients rather than adding another item to the main navigation. These would be short, anonymised case studies showing the thinking behind selected searches.&rdquo;</p>
+      <p>&ldquo;Each Search Story could follow: The Business &rarr; The Challenge &rarr; What Made the Search Difficult &rarr; How We Mapped the Market &rarr; Search Strategy &rarr; Outcome. The objective isn&rsquo;t to reveal confidential client or candidate information.&rdquo;</p>
+    </blockquote>
+
+    <h4>Correction made</h4>
+    <div class="prose">
+      <p>The navigation constraint drove the structure. Four stories at six stages each is too much to bury in a section on an already&#8209;long Clients page, but you don&rsquo;t want a seventh nav item. So the stories live at <code>/clients/search-stories</code> &mdash; underneath Clients in the URL hierarchy as well as the IA &mdash; with a summary list on the Clients page linking to each by anchor. <strong>The main navigation is unchanged at seven items.</strong></p>
+      <p>All four stories from your examples are written, following your six stages exactly. The writing principle was that the interesting content belongs in <em>What Made the Search Difficult</em> and <em>How We Mapped the Market</em> &mdash; those two stages are where you say something a generalist recruiter couldn&rsquo;t.</p>
+      <p>On anonymity: businesses are described by technology, market and region only. No client names, no candidate details, no figures traceable to a party. Outcomes are stated qualitatively rather than with identifying metrics. <strong>See open item 5</strong> &mdash; the specifics are plausible reconstructions and need your factual check.</p>
+    </div>
+
+    <h4>Exact locations</h4>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>File</th><th>Lines</th><th>Type</th><th class="what">Change</th></tr></thead>
+        <tbody>
+          <tr><td class="path">lib/data.js</td><td class="lines">261&ndash;394</td><td><span class="tag new">Added</span></td><td class="what"><code>SEARCH_STORIES</code> &mdash; <span style="border-bottom: 2px solid #3b82f6;">4 stories &times; 6 stages</span>, in your stage order</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">262&ndash;294</td><td><span class="tag new">Added</span></td><td class="what">Regional technical sales team, global linear motion manufacturer</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">295&ndash;327</td><td><span class="tag new">Added</span></td><td class="what">Commercial talent beyond the obvious gearbox pool</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">328&ndash;360</td><td><span class="tag new">Added</span></td><td class="what">Commercial leader in a chain / material handling ecosystem</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">361&ndash;393</td><td><span class="tag new">Added</span></td><td class="what">Building capability in a new international territory</td></tr>
+          <tr><td class="path">app/clients/search-stories/page.jsx</td><td class="lines">1&ndash;91</td><td><span class="tag new">New file</span></td><td class="what">Full page. Numbered vertical stepper &mdash; a layout used nowhere else on the site, so it adds nothing to the repetition problem in section 06</td></tr>
+          <tr><td class="path">components/SearchStoriesTeaser.jsx</td><td class="lines">1&ndash;57</td><td><span class="tag new">New file</span></td><td class="what">Summary list on <code>/clients</code>, each row anchoring to its story</td></tr>
+          <tr><td class="path">app/clients/page.jsx</td><td class="lines">5, 94</td><td><span class="tag new">Added</span></td><td class="what">Teaser placed below Client Experience</td></tr>
+          <tr><td class="path">components/Header.jsx</td><td class="lines">27</td><td><span class="tag new">Added</span></td><td class="what">Entry in the <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">Clients mega&#8209;menu</mark> &mdash; <span style="border-bottom: 2px solid #ef4444;">not</span> the main nav, which stays at seven items</td></tr>
+          <tr><td class="path">components/Footer.jsx</td><td class="lines">33</td><td><span class="tag new">Added</span></td><td class="what">Link under &ldquo;Work With Us&rdquo;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 06 ============ -->
+  <section class="item" id="s6">
+    <div class="itemhead">
+      <span class="itemnum">SECTION 06</span>
+      <span class="sha">3b148d8</span>
+    </div>
+    <h3 class="itemtitle">Overall Visual Development</h3>
+
+    <h4>Original client feedback</h4>
+    <blockquote>
+      <p>&ldquo;I really like the clean direction of the site and don&rsquo;t want to fundamentally change it. However <span class="ell">[&hellip;]</span> I&rsquo;d like us to push the visual treatment another level and make the site feel more like a premium international industrial search consultancy.&rdquo;</p>
+      <p>&ldquo;Stronger use of the charcoal/yellow Consulo palette &middot; More breathing space between major sections &middot; Greater visual differentiation between the seven specialist markets &middot; Avoiding too much repetition of the same card/text layouts <span class="ell">[&hellip;]</span> It should remain clean, technical, modern and professional.&rdquo;</p>
+    </blockquote>
+
+    <h4>Correction made</h4>
+    <div class="prose">
+      <p><strong>Palette.</strong> The three brand colours were pasted as raw hex literals in <span style="border-bottom: 2px solid #ef4444;">342 places across 25 files</span>, which makes &ldquo;stronger use of the palette&rdquo; almost impossible to act on. They are now named tokens, replaced mechanically, with the compiled CSS verified to produce identical values including opacity variants. <strong>Visual output is byte&#8209;identical</strong> &mdash; what changed is that the palette now has one source of truth.</p>
+      <p><strong>Market differentiation.</strong> This was the biggest gap: all seven market pages opened with an identical plain charcoal header, so moving between them felt like reloading the same page. Each now opens with <span style="border-bottom: 2px solid #3b82f6;">its own photography under a charcoal gradient plus an NN/07 index marker</span>. I deliberately did <em>not</em> introduce seven accent colours &mdash; that would work against strengthening the charcoal/yellow palette.</p>
+      <p><strong>On animation:</strong> v1 already had scroll reveals, stagger, hover lifts and a reduced&#8209;motion fallback. I left it alone rather than adding motion for its own sake, which pushes toward the flashy result you don&rsquo;t want.</p>
+    </div>
+
+    <h4>Exact locations</h4>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>File</th><th>Lines</th><th>Type</th><th class="what">Change</th></tr></thead>
+        <tbody>
+          <tr><td class="path">tailwind.config.js</td><td class="lines">13&ndash;21</td><td><span class="tag new">Added</span></td><td class="what"><span style="border-bottom: 2px solid #3b82f6;">Named tokens</span> &mdash; <code>charcoal</code> #3F4143, <code>signal</code> #FFD91A, <code>bone</code> #F7F7F5</td></tr>
+          <tr><td class="path">25 files</td><td class="lines">342 sites</td><td><span class="tag mod">Modified</span></td><td class="what"><span style="border-bottom: 2px solid #ef4444;">Raw hex literals</span> &rarr; <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">palette tokens</mark>, throughout <code>app/</code> and <code>components/</code></td></tr>
+          <tr><td class="path">lib/theme.js</td><td class="lines">1&ndash;10</td><td><span class="tag new">New file</span></td><td class="what">Same values for JS consumers (framer&#8209;motion style props), so there is one source of truth</td></tr>
+          <tr><td class="path">14 files</td><td class="lines">&mdash;</td><td><span class="tag mod">Modified</span></td><td class="what">Breathing space &mdash; page bands <code>py-20</code>/<code>py-24</code> &rarr; <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;"><code>py-28</code></mark>, heroes <code>pt-32</code> &rarr; <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;"><code>pt-40</code></mark></td></tr>
+          <tr><td class="path">app/markets/[id]/page.jsx</td><td class="lines">25&ndash;47</td><td><span class="tag mod">Rewritten</span></td><td class="what">Per&#8209;market hero: own imagery, charcoal gradient, <mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;">NN / 07</mark> index marker</td></tr>
+          <tr><td class="path">components/MarketCard.jsx</td><td class="lines">9, 20&ndash;26, 39&ndash;42</td><td><span class="tag new">Added</span></td><td class="what"><code>wide</code> variant &mdash; two&#8209;column card, 8 technologies instead of 5</td></tr>
+          <tr><td class="path">app/markets/page.jsx</td><td class="lines">20, 23</td><td><span class="tag mod">Modified</span></td><td class="what"><span style="border-bottom: 2px solid #ef4444;">Seven identical tiles</span> &rarr; wide lead card, then the grid</td></tr>
+          <tr><td class="path">app/clients/page.jsx</td><td class="lines">81</td><td><span class="tag mod">Modified</span></td><td class="what"><span style="border-bottom: 2px solid #ef4444;">Service models as a second card grid</span> &rarr; numbered editorial list, breaking the repeat with the objective cards above</td></tr>
+          <tr><td class="path">app/clients/page.jsx</td><td class="lines">35</td><td><span class="tag new">Added</span></td><td class="what">Hero imagery with gradient treatment</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 07 ============ -->
+  <section class="item" id="s7">
+    <div class="itemhead">
+      <span class="itemnum">SECTION 07</span>
+      <span class="sha">f509e06</span>
+    </div>
+    <h3 class="itemtitle">Insights</h3>
+
+    <h4>Original client feedback</h4>
+    <blockquote>
+      <p>&ldquo;I really like the positioning of this as &lsquo;Industrial Recruitment &amp; Market Intelligence&rsquo; rather than simply calling it a blog, so let&rsquo;s retain that.&rdquo;</p>
+      <p>&ldquo;For launch, however, I&rsquo;d prefer to have three strong articles live initially and then progressively publish the others. This gives us an ongoing stream of website and LinkedIn content following launch rather than making the Insights section look artificially populated from day one.&rdquo;</p>
+    </blockquote>
+
+    <h4>Correction made</h4>
+    <div class="prose">
+      <p>Positioning untouched &mdash; the section remains &ldquo;Industrial Recruitment &amp; Market Intelligence&rdquo; on both the page and the navigation.</p>
+      <p>The question was how to hold three back. Showing them as &ldquo;coming soon&rdquo; tiles would <span style="border-bottom: 2px solid #ef4444;">defeat the purpose</span> &mdash; the section would still look populated, just with unfinished content. So scheduled articles <strong>render nowhere on the site</strong>. Publishing one is a single flag change plus a live date.</p>
+      <p>The three going live lead with method and then prove it across your two largest markets; the gearbox piece also pairs directly with one of the new Search Stories. Dropping from six to three left the page thin at the bottom, so rather than pad it I closed with a <span style="border-bottom: 2px solid #3b82f6;">&ldquo;publishing regularly&rdquo; note and a LinkedIn follow prompt</span> &mdash; which also serves the content&#8209;stream strategy by giving visitors a reason to subscribe to the pipeline.</p>
+    </div>
+
+    <h4>Exact locations</h4>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>File</th><th>Lines</th><th>Type</th><th class="what">Change</th></tr></thead>
+        <tbody>
+          <tr><td class="path">lib/data.js</td><td class="lines">150, 158, 166</td><td><span class="tag new">Added</span></td><td class="what"><mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;"><code>status: 'published'</code></mark> &mdash; competitor mapping; servo &amp; drives talent; gearbox experience</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">174, 182, 190, 198</td><td><span class="tag new">Added</span></td><td class="what"><mark style="background-color: #fef08a; padding: 2px 4px; border-radius: 3px;"><code>status: 'scheduled'</code></mark> &mdash; held back, rendered nowhere</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">186&ndash;192</td><td><span class="tag new">Added</span></td><td class="what"><span style="border-bottom: 2px solid #3b82f6;">New queued article</span> &mdash; &ldquo;Where Electrification Talent Is Coming From&rdquo;, since that market now forms part of the proposition</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">253</td><td><span class="tag new">Added</span></td><td class="what"><code>PUBLISHED_INSIGHTS</code> &mdash; the single filter both surfaces read from</td></tr>
+          <tr><td class="path">lib/data.js</td><td class="lines">139&ndash;143</td><td><span class="tag new">Added</span></td><td class="what">Comment documenting how to publish a queued article</td></tr>
+          <tr><td class="path">app/insights/page.jsx</td><td class="lines">2, 27</td><td><span class="tag mod">Modified</span></td><td class="what"><span style="border-bottom: 2px solid #ef4444;">All six rendered</span> &rarr; <span style="border-bottom: 2px solid #3b82f6;">published only</span></td></tr>
+          <tr><td class="path">app/insights/page.jsx</td><td class="lines">29&ndash;48</td><td><span class="tag new">Added</span></td><td class="what">Closing &ldquo;publishing regularly&rdquo; block and LinkedIn prompt</td></tr>
+          <tr><td class="path">app/page.jsx</td><td class="lines">9, 79</td><td><span class="tag mod">Modified</span></td><td class="what">Homepage strip reads the same source of truth</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ OPEN ============ -->
+  <section class="open" id="open">
+    <div class="itemhead"><span class="itemnum">OPEN ITEMS</span></div>
+    <h3 class="itemtitle">Five things blocked on your side, not on development</h3>
+    <ol>
+      <li><strong>Client logo permissions.</strong> The section is built and waiting. Each company switches on independently &mdash; artwork into <code>public/logos</code> and a one&#8209;line change per company. No development work. Instructions in <code>public/logos/README.md</code>.</li>
+      <li><strong>Licensed photography.</strong> The treatment slots exist across market pages, About and Clients and will take real photographs without layout changes. Electrification in particular is running on placeholder artwork rather than a photo.</li>
+      <li><strong>Hotlinked market imagery.</strong> The existing photography points at an external host we don&rsquo;t control (<code>lib/data.js:1&ndash;11</code>). If it expires, every market image on the live site breaks. Worth moving into <code>public/</code> before launch.</li>
+      <li><strong>Combustion URL change.</strong> <code>/markets/combustion-energy</code> is now <code>/markets/combustion-thermal</code>. Harmless pre&#8209;launch, but tell me if that URL has been shared and I&rsquo;ll add a redirect.</li>
+      <li><strong>Search Story facts need your check.</strong> The stories follow your four examples, but the specifics &mdash; the sixty&#8209;businesses figure, the eleven&#8209;month timeline, the two&#8209;quarter ramp &mdash; are <span style="border-bottom: 2px solid #ef4444;">my reconstructions of plausible searches, not your records</span>. They read as real because they are specific, which is exactly why they need verifying before launch.</li>
+    </ol>
+  </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Consulo Global &mdash; client feedback v2 &middot; commits <code>0f88f63</code> &hellip; <code>f509e06</code> on <code>main</code></span>
+    <span>Line numbers refer to the tree at <code>6d1e5b2</code></span>
+  </div>
+</footer>
+
+</body>
+</html>
