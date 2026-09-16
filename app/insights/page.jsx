@@ -1,7 +1,9 @@
 import Link from 'next/link';
-import { PUBLISHED_INSIGHTS } from '../../lib/data';
+import { INSIGHTS, PUBLISHED_INSIGHTS } from '../../lib/data';
 import InsightsGrid from '../../components/InsightsGrid';
-import { FadeIn } from '../../components/AnimatedSection';
+import { FadeIn, StaggerContainer, StaggerItem } from '../../components/AnimatedSection';
+
+const SCHEDULED_INSIGHTS = INSIGHTS.filter((i) => i.status === 'scheduled');
 
 export const metadata = { title: 'Insights | Consulo Global' };
 
@@ -48,6 +50,29 @@ export default function InsightsPage() {
           </FadeIn>
         </div>
       </section>
+
+      {SCHEDULED_INSIGHTS.length > 0 && (
+        <section className="py-24 bg-charcoal">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10">
+            <FadeIn>
+              <div className="text-signal text-xs font-bold tracking-[0.2em] mb-3">IN THE PIPELINE</div>
+              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight max-w-3xl mb-12">
+                More market intelligence in development.
+              </h2>
+            </FadeIn>
+            <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" stagger={0.08}>
+              {SCHEDULED_INSIGHTS.map((ins) => (
+                <StaggerItem key={ins.title}>
+                  <div className="border border-white/15 p-6 h-full">
+                    <div className="text-signal text-xs font-bold tracking-[0.2em] mb-3">{ins.category}</div>
+                    <h3 className="text-lg font-bold text-white leading-snug">{ins.title}</h3>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
+      )}
     </>
   );
 }
