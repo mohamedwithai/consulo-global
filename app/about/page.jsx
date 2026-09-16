@@ -53,7 +53,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">ABOUT CONSULO GLOBAL</div>
           <h1 className="text-5xl md:text-7xl font-black text-white leading-[0.95] tracking-tight max-w-5xl">Specialist industries deserve specialist recruiters.</h1>
-          <p className="mt-8 text-xl text-white/80 max-w-3xl leading-relaxed">Consulo Global is an international specialist search business focused on the commercial, technical and leadership talent behind industrial technology.</p>
+          <p className="mt-8 text-xl text-white/80 max-w-3xl leading-relaxed">Consulo Global is an international specialist search business focused on the commercial, technical and leadership talent behind industrial technology. Founded in 2017 and headquartered in Dubai, we operate across the United Kingdom, Continental Europe, the Middle East and the USA.</p>
         </div>
       </section>
 
@@ -65,7 +65,8 @@ export default function AboutPage() {
               <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">OUR EVOLUTION</div>
               <h2 className="text-4xl md:text-5xl font-black text-charcoal mb-6 tracking-tight">From Consulo First to Consulo Global.</h2>
               <p className="text-lg text-charcoal/70 leading-relaxed mb-6">Consulo began in 2017 with a clear purpose: to provide specialist recruitment to industrial and technical markets where genuine sector knowledge matters.</p>
-              <p className="text-lg text-charcoal/70 leading-relaxed">Consulo Global represents the next stage of that journey — taking the specialist approach upon which the business was built and applying it across an increasingly international client and candidate network.</p>
+              <p className="text-lg text-charcoal/70 leading-relaxed mb-6">Consulo Global represents the next stage of that journey — taking the specialist approach upon which the business was built and applying it across an increasingly international client and candidate network.</p>
+              <p className="text-lg text-charcoal/70 leading-relaxed">In doing so, Consulo has developed an extensive specialist industry network — spanning direct competitors, adjacent technology businesses, distributors and the wider supply chain across every market we serve.</p>
             </FadeIn>
             <FadeIn delay={0.15}>
               <div className="relative h-[420px] w-full">
