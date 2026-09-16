@@ -65,13 +65,16 @@ export default function ClientsPage() {
           <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">SEARCH PROCESS</div>
           <h2 className="text-4xl md:text-5xl font-black text-charcoal mb-12 tracking-tight">The Consulo Search Process.</h2>
           <div className="grid md:grid-cols-5 gap-4">
-            {PROCESS_STEPS.map((s) => (
-              <div key={s.n} className="bg-bone p-6 border-l-4 border-signal">
-                <div className="text-signal text-2xl font-black mb-2">{s.n}</div>
-                <h3 className="text-base font-bold text-charcoal mb-2">{s.t}</h3>
-                <p className="text-xs text-charcoal/70 leading-relaxed">{s.d}</p>
-              </div>
-            ))}
+            {PROCESS_STEPS.map((s) => {
+              const isMap = s.t === 'Map';
+              return (
+                <div key={s.n} className={`p-6 border-l-4 ${isMap ? 'bg-signal border-charcoal' : 'bg-bone border-signal'}`}>
+                  <div className={`text-2xl font-black mb-2 ${isMap ? 'text-charcoal' : 'text-signal'}`}>{s.n}</div>
+                  <h3 className="text-base font-bold text-charcoal mb-2">{s.t}</h3>
+                  <p className={`text-xs leading-relaxed ${isMap ? 'text-charcoal/80' : 'text-charcoal/70'}`}>{s.d}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
