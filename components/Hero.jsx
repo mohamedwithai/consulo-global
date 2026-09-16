@@ -20,7 +20,7 @@ const itemVariants = {
 
 export default function Hero({ title, subtitle, cta1, cta2, href1, href2, image }) {
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       <motion.div
         className="absolute inset-0"
         initial={{ scale: 1.1 }}
