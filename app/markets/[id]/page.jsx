@@ -9,10 +9,42 @@ export function generateStaticParams() {
   return MARKETS.map((m) => ({ id: m.id }));
 }
 
+const MARKET_SEO = {
+  automation: {
+    title: 'Industrial Automation & Motion Control Recruitment | Consulo Global',
+    description: 'Industrial Automation Recruitment, Motion Control Recruitment and Drives Recruitment — technical sales, applications and leadership search across PLCs, servo drives, robotics and machine safety.',
+  },
+  'power-transmission': {
+    title: 'Power Transmission Recruitment | Consulo Global',
+    description: 'Power Transmission Recruitment, Electric Motor Recruitment and Linear Motion Recruitment — technical sales, key account and leadership search across gearboxes, motors, couplings and bearings.',
+  },
+  electrification: {
+    title: 'Electrification & Energy Technologies Recruitment | Consulo Global',
+    description: 'Specialist recruitment for electrification and energy technologies — electric motors, power electronics, inverters and energy storage businesses.',
+  },
+  'material-handling': {
+    title: 'Bulk & Material Handling Recruitment | Consulo Global',
+    description: 'Specialist recruitment for bulk and material handling — conveyors, screening, crushing and aftermarket sales talent across mining, quarrying and logistics.',
+  },
+  'distribution-mro': {
+    title: 'Industrial Distribution & MRO Recruitment | Consulo Global',
+    description: 'Industrial Distribution Recruitment — external sales, branch management and key account search across bearings, power transmission, fluid power and technical distribution.',
+  },
+  'process-flow': {
+    title: 'Process, Flow & Instrumentation Recruitment | Consulo Global',
+    description: 'Specialist recruitment for process, flow and instrumentation — valves, pumps, actuation and measurement talent across oil & gas, water, chemical and pharma.',
+  },
+  'combustion-thermal': {
+    title: 'Combustion & Thermal Technologies Recruitment | Consulo Global',
+    description: 'Specialist recruitment for combustion and thermal technologies — burners, fired heaters and thermal processing talent across oil & gas, power and heavy industry.',
+  },
+};
+
 export function generateMetadata({ params }) {
   const market = MARKETS.find((m) => m.id === params.id);
   if (!market) return {};
-  return { title: `${market.title} | Consulo Global` };
+  const seo = MARKET_SEO[market.id];
+  return seo ? { title: seo.title, description: seo.description } : { title: `${market.title} | Consulo Global` };
 }
 
 export default function MarketPage({ params }) {

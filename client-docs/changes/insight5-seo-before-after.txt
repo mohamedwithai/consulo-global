@@ -1,0 +1,93 @@
+Insight 5 — SEO metadata: before / after
+=========================================
+This is a <head> metadata change (page <title> and <meta name="description">),
+which isn't visible on the rendered page itself — so this is a text record
+instead of a before/after screenshot.
+
+/markets/automation
+  BEFORE title:       Automation & Motion Control | Consulo Global
+  BEFORE description:  (none)
+  AFTER  title:       Industrial Automation & Motion Control Recruitment | Consulo Global
+  AFTER  description: Industrial Automation Recruitment, Motion Control Recruitment and
+                       Drives Recruitment — technical sales, applications and leadership
+                       search across PLCs, servo drives, robotics and machine safety.
+
+/markets/power-transmission
+  BEFORE title:       Mechanical Power Transmission | Consulo Global
+  BEFORE description:  (none)
+  AFTER  title:       Power Transmission Recruitment | Consulo Global
+  AFTER  description: Power Transmission Recruitment, Electric Motor Recruitment and
+                       Linear Motion Recruitment — technical sales, key account and
+                       leadership search across gearboxes, motors, couplings and bearings.
+
+/markets/electrification
+  BEFORE title:       Electrification & Energy Technologies | Consulo Global
+  BEFORE description:  (none)
+  AFTER  title:       Electrification & Energy Technologies Recruitment | Consulo Global
+  AFTER  description: Specialist recruitment for electrification and energy technologies —
+                       electric motors, power electronics, inverters and energy storage
+                       businesses.
+
+/markets/material-handling
+  BEFORE title:       Bulk & Material Handling | Consulo Global
+  BEFORE description:  (none)
+  AFTER  title:       Bulk & Material Handling Recruitment | Consulo Global
+  AFTER  description: Specialist recruitment for bulk and material handling — conveyors,
+                       screening, crushing and aftermarket sales talent across mining,
+                       quarrying and logistics.
+
+/markets/distribution-mro
+  BEFORE title:       Industrial Distribution & MRO | Consulo Global
+  BEFORE description:  (none)
+  AFTER  title:       Industrial Distribution & MRO Recruitment | Consulo Global
+  AFTER  description: Industrial Distribution Recruitment — external sales, branch
+                       management and key account search across bearings, power
+                       transmission, fluid power and technical distribution.
+
+/markets/process-flow
+  BEFORE title:       Process, Flow & Instrumentation | Consulo Global
+  BEFORE description:  (none)
+  AFTER  title:       Process, Flow & Instrumentation Recruitment | Consulo Global
+  AFTER  description: Specialist recruitment for process, flow and instrumentation —
+                       valves, pumps, actuation and measurement talent across oil & gas,
+                       water, chemical and pharma.
+
+/markets/combustion-thermal
+  BEFORE title:       Combustion & Thermal Technologies | Consulo Global
+  BEFORE description:  (none)
+  AFTER  title:       Combustion & Thermal Technologies Recruitment | Consulo Global
+  AFTER  description: Specialist recruitment for combustion and thermal technologies —
+                       burners, fired heaters and thermal processing talent across
+                       oil & gas, power and heavy industry.
+
+/markets (index)
+  BEFORE title:       Specialist Markets | Consulo Global
+  BEFORE description:  (none)
+  AFTER  title:       Specialist Markets | Consulo Global   (unchanged)
+  AFTER  description: Seven specialist industrial technology markets — Industrial
+                       Automation Recruitment, Power Transmission Recruitment, Industrial
+                       Distribution Recruitment and more, mapped before a single candidate
+                       is approached.
+
+/clients
+  BEFORE title:       For Clients | Consulo Global
+  BEFORE description:  (none)
+  AFTER  title:       For Clients | Consulo Global   (unchanged)
+  AFTER  description: Industrial Sales Recruitment and technical leadership search for
+                       industrial technology businesses — contingent, exclusive and
+                       executive search plus talent mapping.
+
+Coverage of the client's named search terms
+--------------------------------------------
+Power Transmission Recruitment     -> /markets/power-transmission
+Industrial Automation Recruitment  -> /markets/automation
+Motion Control Recruitment         -> /markets/automation
+Electric Motor Recruitment         -> /markets/power-transmission
+Drives Recruitment                 -> /markets/automation
+Linear Motion Recruitment          -> /markets/power-transmission
+Industrial Sales Recruitment       -> /clients
+Industrial Distribution Recruitment -> /markets/distribution-mro
+
+Oil & Gas / Energy recruitment SEO was intentionally NOT added — the
+client's own note says this will be added later "as this side of the
+business develops."

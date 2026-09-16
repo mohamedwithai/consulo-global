@@ -4,7 +4,10 @@ import { IMAGES } from '../../lib/data';
 import ClientExperience from '../../components/ClientExperience';
 import SearchStoriesTeaser from '../../components/SearchStoriesTeaser';
 
-export const metadata = { title: 'For Clients | Consulo Global' };
+export const metadata = {
+  title: 'For Clients | Consulo Global',
+  description: 'Industrial Sales Recruitment and technical leadership search for industrial technology businesses — contingent, exclusive and executive search plus talent mapping.',
+};
 
 const OBJECTIVES = [
   { t: 'Expand your sales team', d: 'Technical Sales, BDM, Key Accounts, Regional Sales.' },

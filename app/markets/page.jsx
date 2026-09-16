@@ -2,7 +2,10 @@ import MarketCard from '../../components/MarketCard';
 import MarketEcosystem from '../../components/MarketEcosystem';
 import { MARKETS } from '../../lib/data';
 
-export const metadata = { title: 'Specialist Markets | Consulo Global' };
+export const metadata = {
+  title: 'Specialist Markets | Consulo Global',
+  description: 'Seven specialist industrial technology markets — Industrial Automation Recruitment, Power Transmission Recruitment, Industrial Distribution Recruitment and more, mapped before a single candidate is approached.',
+};
 
 export default function MarketsPage() {
   return (
