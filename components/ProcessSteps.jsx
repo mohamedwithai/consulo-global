@@ -5,7 +5,7 @@ import { StaggerContainer, StaggerItem } from './AnimatedSection';
 
 const STEPS = [
   { n: '01', t: 'Understand', d: 'Business, role, products, customers, geography, objectives.' },
-  { n: '02', t: 'Map', d: 'Competitors, adjacent markets, target companies, talent pools.' },
+  { n: '02', t: 'Map', d: 'Competitor mapping, adjacent markets, target companies, talent intelligence.' },
   { n: '03', t: 'Engage', d: 'Direct search, existing network, passive candidates, referrals.' },
   { n: '04', t: 'Assess', d: 'Technical relevance, commercial track record, cultural fit, motivation.' },
   { n: '05', t: 'Deliver', d: 'Focused shortlist, interview management, offer management, onboarding.' },
