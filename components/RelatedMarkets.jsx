@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { MARKETS } from '../lib/data';
 
 /**
- * Reinforces that the seven markets are interconnected — every market page
+ * Reinforces that the markets are interconnected — every market page
  * points at the two it overlaps with most.
  */
 export default function RelatedMarkets({ market }) {

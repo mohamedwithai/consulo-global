@@ -23,7 +23,7 @@ export default function HomePage() {
 
       <ClientLogoStrip />
 
-      {/* Seven Specialist Markets */}
+      {/* Specialist Markets */}
       <section className="py-28 bg-bone">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <StaggerContainer className="max-w-3xl mb-16">

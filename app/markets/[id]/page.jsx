@@ -54,7 +54,7 @@ export default function MarketPage({ params }) {
 
   return (
     <>
-      {/* Each market opens with its own imagery and index so the seven pages
+      {/* Each market opens with its own imagery and index so the eight pages
           are immediately distinguishable from one another. */}
       <section className="relative pt-40 pb-28 bg-charcoal overflow-hidden">
         <Image

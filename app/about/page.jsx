@@ -12,9 +12,9 @@ const HERITAGE = [
     d: 'Consulo was founded to serve industrial and technical markets where genuine sector knowledge is the difference between a shortlist and a search.',
   },
   {
-    k: 'Seven markets',
+    k: 'Eight markets',
     t: 'Specialism, not coverage',
-    d: 'Automation, electrification, power transmission, material handling, distribution, process technology and thermal systems — mapped as connected ecosystems.',
+    d: 'Automation, electrification, power transmission, material handling, distribution, process technology, thermal systems and energy & oilfield technologies — mapped as connected ecosystems.',
   },
   {
     k: 'Four regions',

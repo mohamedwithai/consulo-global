@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="Energy and oilfield technologies">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2A2C2E"/>
+      <stop offset="0.55" stop-color="#3F4143"/>
+      <stop offset="1" stop-color="#25272A"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFD91A" stop-opacity="0"/>
+      <stop offset="1" stop-color="#FFD91A" stop-opacity="0.30"/>
+    </linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" fill="none" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+
+  <!-- horizon -->
+  <path d="M0 560 H1200" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="2"/>
+
+  <!-- derrick / drilling rig -->
+  <g stroke="#FFD91A" stroke-opacity="0.7" stroke-width="4" fill="none" stroke-linejoin="round">
+    <path d="M760 560 L860 160 L960 560 Z"/>
+    <path d="M780 500 H940 M792 440 H928 M804 380 H916 M816 320 H904 M828 260 H892"/>
+    <path d="M860 160 V120"/>
+  </g>
+  <circle cx="860" cy="108" r="10" fill="#FFD91A" fill-opacity="0.9"/>
+
+  <!-- wellhead / christmas tree stack -->
+  <g transform="translate(300 560)">
+    <rect x="-14" y="-260" width="28" height="260" fill="#FFFFFF" fill-opacity="0.18"/>
+    <g fill="none" stroke="#FFFFFF" stroke-opacity="0.30" stroke-width="3">
+      <rect x="-46" y="-96" width="92" height="40" rx="3"/>
+      <rect x="-58" y="-150" width="116" height="40" rx="3"/>
+      <rect x="-70" y="-204" width="140" height="40" rx="3"/>
+    </g>
+    <g fill="#FFD91A" fill-opacity="0.88">
+      <rect x="-38" y="-88" width="36" height="24" rx="2"/>
+      <rect x="4" y="-142" width="48" height="24" rx="2"/>
+      <rect x="-62" y="-196" width="60" height="24" rx="2"/>
+    </g>
+  </g>
+
+  <!-- OCTG casing / pipe cross-section -->
+  <g transform="translate(560 640)">
+    <circle r="86" fill="none" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="2"/>
+    <circle r="64" fill="none" stroke="#FFD91A" stroke-opacity="0.75" stroke-width="4"/>
+    <circle r="30" fill="none" stroke="#FFFFFF" stroke-opacity="0.30" stroke-width="3"/>
+  </g>
+
+  <!-- subsea / pipeline run -->
+  <g stroke="#FFD91A" stroke-opacity="0.5" stroke-width="3" fill="none">
+    <path d="M0 660 H180 L240 700 H480"/>
+  </g>
+  <g fill="#FFD91A" fill-opacity="0.85">
+    <circle cx="180" cy="660" r="7"/><circle cx="240" cy="700" r="7"/>
+  </g>
+</svg>
