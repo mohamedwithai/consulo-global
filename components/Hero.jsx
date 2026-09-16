@@ -51,7 +51,7 @@ export default function Hero({ title, subtitle, cta1, cta2, href1, href2, image 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
                 <Link
                   href={href1}
-                  className="bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white transition-colors"
+                  className="inline-block bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white transition-colors"
                 >
                   {cta1} →
                 </Link>
@@ -61,7 +61,7 @@ export default function Hero({ title, subtitle, cta1, cta2, href1, href2, image 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
                 <Link
                   href={href2}
-                  className="border-2 border-white text-white px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white hover:text-charcoal transition-colors"
+                  className="inline-block border-2 border-white text-white px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white hover:text-charcoal transition-colors"
                 >
                   {cta2} →
                 </Link>

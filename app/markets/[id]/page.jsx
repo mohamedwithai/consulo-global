@@ -141,8 +141,8 @@ export default function MarketPage({ params }) {
         <div className="max-w-5xl mx-auto px-6 lg:px-10 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-8">Looking for talent in {market.title}?</h2>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em]">DISCUSS A SEARCH →</Link>
-            <Link href="/candidates" className="border-2 border-white text-white px-8 py-4 text-sm font-bold tracking-[0.15em]">EXPLORE OPPORTUNITIES →</Link>
+            <Link href="/contact" className="inline-block bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em]">DISCUSS A SEARCH →</Link>
+            <Link href="/candidates" className="inline-block border-2 border-white text-white px-8 py-4 text-sm font-bold tracking-[0.15em]">EXPLORE OPPORTUNITIES →</Link>
           </div>
         </div>
       </section>
