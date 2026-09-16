@@ -261,7 +261,26 @@ page itself, checked on both desktop and mobile).
 
 ---
 
-## 11. Infrastructure incidents during the session
+## 11. User-reported fix — mobile CTA buttons overlapping (commit `3c5fc0e`)
+
+After all 8 insights, the user reported that "Discuss a Search" and
+"Explore Opportunities" overlapped on mobile. Reproduced at 320px width
+(iPhone SE-class).
+
+**Root cause:** three CTA `<Link>` buttons (homepage hero, About page,
+every market detail page's bottom CTA) were missing `inline-block`,
+defaulting to inline display. "EXPLORE OPPORTUNITIES →" is too long to
+fit one line at that width — when it wrapped to two lines, the inline
+element didn't wrap its border/background around both lines as one box,
+so the arrow spilled out and overlapped the button above it. Every other
+CTA button site-wide already had `inline-block`; this was isolated to
+those three spots. Fixed by adding it.
+
+**Screenshots:** `mobile-cta-overlap-before.png` / `-after.png`.
+
+---
+
+## 12. Infrastructure incidents during the session
 
 These aren't part of the client feedback but materially affected how the
 session went, so they're recorded here for anyone picking this back up.
@@ -311,10 +330,11 @@ session went, so they're recorded here for anyone picking this back up.
 
 ---
 
-## 12. Status as of this log
+## 13. Status as of this log
 
-**All 8 actionable feedback items are complete**, each shown to the user
-and approved before committing:
+**All 8 actionable feedback items are complete**, plus one user-reported
+mobile fix caught after the fact — each shown to the user and approved
+before committing:
 
 | Commit | Item |
 |---|---|
@@ -327,6 +347,7 @@ and approved before committing:
 | `336d0f3` | Insight 6 — mobile QA pass, fixed invisible hero headline bug |
 | `afba89d` | Insight 7 — "Map" made visually prominent |
 | `cf85d39` | Insight 8 — new Energy & Oilfield Technologies market |
+| `3c5fc0e` | Mobile CTA buttons overlapping (user-reported, post-review) |
 
 **On hold, per the client's own note in the source document:** the
 flagged brand-list/tagline block (Insight 9) — not implemented, pending
