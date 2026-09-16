@@ -14,9 +14,9 @@ export default function HomePage() {
       <Hero
         title="The people behind industrial technology."
         subtitle="Consulo Global connects industrial technology businesses with the people capable of driving commercial growth, technical capability and leadership across the United States, United Kingdom, Continental Europe and Middle East."
-        cta1="START A SEARCH"
+        cta1="DISCUSS A SEARCH"
         href1="/contact"
-        cta2="START A CONVERSATION"
+        cta2="EXPLORE OPPORTUNITIES"
         href2="/candidates"
         image={IMAGES.hero}
       />

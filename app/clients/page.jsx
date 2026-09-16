@@ -95,7 +95,7 @@ export default function ClientsPage() {
 
       <section className="py-28 bg-bone">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
-          <Link href="/contact" className="inline-block bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-charcoal hover:text-signal transition-colors">START A SEARCH →</Link>
+          <Link href="/contact" className="inline-block bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-charcoal hover:text-signal transition-colors">DISCUSS A SEARCH →</Link>
         </div>
       </section>
     </>

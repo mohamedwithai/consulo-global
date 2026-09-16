@@ -25,7 +25,7 @@ export default function ClientCandidateSplit() {
                   href="/clients"
                   className="inline-block bg-signal text-charcoal px-6 py-3 text-xs font-bold tracking-[0.15em] group-hover:shadow-lg transition-shadow"
                 >
-                  START A SEARCH →
+                  DISCUSS A SEARCH →
                 </Link>
               </motion.div>
             </motion.div>
@@ -48,7 +48,7 @@ export default function ClientCandidateSplit() {
                   href="/candidates"
                   className="inline-block bg-charcoal text-signal px-6 py-3 text-xs font-bold tracking-[0.15em] group-hover:shadow-lg transition-shadow"
                 >
-                  START A CONVERSATION →
+                  EXPLORE OPPORTUNITIES →
                 </Link>
               </motion.div>
             </motion.div>

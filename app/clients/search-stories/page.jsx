@@ -49,7 +49,7 @@ export default function SearchStoriesPage() {
               than the size of the market.
             </p>
             <Link href="/contact" className="inline-block bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white transition-colors">
-              START A SEARCH →
+              DISCUSS A SEARCH →
             </Link>
           </FadeIn>
         </div>

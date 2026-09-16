@@ -29,7 +29,7 @@ export default function CandidatesPage() {
               <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">TARGETED MARKET REPRESENTATION</div>
               <h2 className="text-4xl md:text-5xl font-black text-charcoal mb-6 tracking-tight">For selected professionals.</h2>
               <p className="text-lg text-charcoal/70 leading-relaxed mb-8">Consulo takes a targeted approach to the market — identifying businesses where your experience, network and technical knowledge could create genuine commercial value.</p>
-              <Link href="/contact" className="inline-block bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em]">START A CONVERSATION →</Link>
+              <Link href="/contact" className="inline-block bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em]">EXPLORE OPPORTUNITIES →</Link>
             </div>
             <div className="space-y-4">
               {STEPS.map((s, i) => (

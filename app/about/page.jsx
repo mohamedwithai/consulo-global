@@ -200,7 +200,7 @@ export default function AboutPage() {
               Deeper specialism in the markets we already know, in more of the territories our clients operate in — supported by the market intelligence that comes from working in these technologies every day.
             </p>
             <div className="mt-12 flex flex-wrap gap-4 justify-center">
-              <Link href="/contact" className="bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white transition-colors">START A SEARCH →</Link>
+              <Link href="/contact" className="bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white transition-colors">DISCUSS A SEARCH →</Link>
               <Link href="/markets" className="border-2 border-white text-white px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-white hover:text-charcoal transition-colors">EXPLORE OUR MARKETS →</Link>
             </div>
             <p className="mt-12 text-sm text-white/45">

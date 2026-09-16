@@ -25,7 +25,7 @@ const MEGA_CONTENT = {
     { label: 'Executive Search', href: '/clients' },
     { label: 'Talent Mapping', href: '/clients' },
     { label: 'Search Stories', href: '/clients/search-stories' },
-    { label: 'Start a Search', href: '/contact' },
+    { label: 'Discuss a Search', href: '/contact' },
   ],
   candidates: [
     { label: 'Explore Opportunities', href: '/candidates' },
@@ -77,7 +77,7 @@ export default function Header() {
             onClick={handleNav}
             className="hidden lg:inline-flex items-center gap-2 bg-signal text-charcoal px-5 py-2.5 text-xs font-bold tracking-[0.15em] hover:bg-charcoal hover:text-signal transition-all"
           >
-            START A SEARCH →
+            DISCUSS A SEARCH →
           </Link>
 
           <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-charcoal" aria-label="Toggle menu">
@@ -98,7 +98,7 @@ export default function Header() {
                 </Link>
               ))}
               <Link href="/contact" onClick={handleNav} className="block w-full mt-3 bg-signal text-charcoal px-5 py-3 text-xs font-bold tracking-[0.15em]">
-                START A SEARCH →
+                DISCUSS A SEARCH →
               </Link>
             </div>
           </motion.div>
