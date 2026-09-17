@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Hero from '../components/Hero';
-import MarketCard from '../components/MarketCard';
+import MarketMosaic from '../components/MarketMosaic';
 import ProcessSteps from '../components/ProcessSteps';
 import RegionGrid from '../components/RegionGrid';
 import ClientCandidateSplit from '../components/ClientCandidateSplit';
@@ -36,26 +36,7 @@ export default function HomePage() {
               </h2>
             </StaggerItem>
           </StaggerContainer>
-          <div className="grid lg:grid-cols-6 gap-6" style={{
-            gridAutoRows: 'auto',
-          }}>
-            {MARKETS.map((m, i, arr) => {
-              const isLast = i === arr.length - 1;
-              const isSecondLast = i === arr.length - 2;
-              let colSpan = 2;
-
-              if (i === 0) colSpan = 4;
-              else if (isLast || isSecondLast) colSpan = 3;
-              else if (i % 2 === 1) colSpan = 2;
-              else colSpan = 3;
-
-              return (
-                <div key={m.id} style={{ gridColumn: `span ${colSpan}` }}>
-                  <MarketCard market={m} index={i} />
-                </div>
-              );
-            })}
-          </div>
+          <MarketMosaic markets={MARKETS} />
         </div>
       </section>
 

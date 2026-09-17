@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { fadeInUp, defaultTransition } from '../lib/motion';
 import { COLORS } from '../lib/theme';
 
-export default function MarketCard({ market, index = 0, wide = false }) {
+export default function MarketCard({ market, index = 0, wide = false, className = '' }) {
   return (
     <motion.div
       initial="hidden"
@@ -15,7 +15,7 @@ export default function MarketCard({ market, index = 0, wide = false }) {
       variants={fadeInUp}
       transition={{ ...defaultTransition, delay: index * 0.1 }}
       whileHover={{ y: -8 }}
-      className="group bg-white overflow-hidden border border-charcoal/10 hover:border-signal/50 transition-colors duration-300"
+      className={`group bg-white overflow-hidden border border-charcoal/10 hover:border-signal/50 transition-colors duration-300 ${className}`}
     >
       <Link href={`/markets/${market.id}`} className={wide ? 'grid md:grid-cols-2 h-full' : undefined}>
         <div className={`relative overflow-hidden ${wide ? 'h-64 md:h-full md:min-h-[320px]' : 'h-64'}`}>

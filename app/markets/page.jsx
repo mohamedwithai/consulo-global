@@ -1,4 +1,4 @@
-import MarketCard from '../../components/MarketCard';
+import MarketMosaic from '../../components/MarketMosaic';
 import MarketEcosystem from '../../components/MarketEcosystem';
 import { MARKETS } from '../../lib/data';
 
@@ -19,14 +19,7 @@ export default function MarketsPage() {
       </section>
       <section className="py-28 bg-bone">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="mb-6">
-            <MarketCard market={MARKETS[0]} wide />
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {MARKETS.slice(1).map((m, i) => (
-              <MarketCard key={m.id} market={m} index={i} />
-            ))}
-          </div>
+          <MarketMosaic markets={MARKETS} />
         </div>
       </section>
       <MarketEcosystem />
