@@ -280,7 +280,163 @@ those three spots. Fixed by adding it.
 
 ---
 
-## 12. Infrastructure incidents during the session
+## 12. Market cards rebuilt as a mosaic grid (commits `33b0026`, `2152c4d`)
+
+Not from the client — the user brought a reference design showing the
+market cards tiled at mixed widths rather than as a uniform grid, and
+asked for the same on the homepage and `/markets`.
+
+**First attempt (`33b0026`) was wrong on two counts** and had to be
+rebuilt: it applied column spans at every breakpoint, which squeezed
+cards on mobile, and it alternated spans by index, which left holes in
+desktop rows.
+
+**The rebuild (`2152c4d`)** puts the layout in one shared component,
+`components/MarketMosaic.jsx`, used by both pages. It computes spans
+from the card count on a 6-column desktop grid — lead row 4+2, middle
+rows 2+2+2, tail pair 3+3, with leftover middle cards as mirrored 2+4 /
+4+2 rows — so every row fills exactly for any count. Verified for 1 to
+14 cards. Spans apply only at `lg`; mobile and tablet keep the original
+1- and 2-column grid. With 8 markets the layout is 4+2 / 2+4 / 4+2 /
+3+3; with 7 it matches the reference exactly.
+
+**Regression worth knowing about:** `/markets` used to open with a wide
+two-column featured card, added back in `3b148d8` in response to earlier
+client feedback asking for *"less repetition of the same card layout as
+visitors move through the site."* Sharing one grid across both pages
+removed it, so `/markets` and the homepage now look the same. The `wide`
+card variant still exists in `MarketCard` but is unused. If the client
+raises it, the fix is to restore the featured card on `/markets` only and
+keep the mosaic for the rest.
+
+**Screenshots:** `mosaic-home-desktop.png`, `-tablet`, `-mobile`,
+`mosaic-markets-desktop.png`.
+
+---
+
+## 13. New logo system (commit `9d617a5`)
+
+The client supplied a real logo, replacing the placeholder yellow "C"
+square and typed wordmark in the header.
+
+**What arrived, in stages:** first a photo of the logo (`image001.png`,
+a stacked "CG" mark over a serif wordmark, on a white background), then
+a Claude design link, then `Consulo Logo.html` — a full logo kit. All
+are kept in `Reference/`. The kit holds 8 SVGs (horizontal, stacked,
+mark and favicon, each in dark, white or mono), its own palette
+(Graphite `#2E2E2E`, Signal Yellow `#F5C518`, Steel `#6B6B6B`) and a
+note that the wordmark is live Archivo text, to be converted to outlines
+for print.
+
+**Implementation:** the horizontal lockup is inlined as
+`components/Logo.jsx` rather than used as an image file, because the
+wordmark is live text — as a plain `<img>` it falls back to Arial on
+machines without Archivo. Archivo is now loaded via `next/font` beside
+Inter. The kit is copied to `public/logo/`, and the favicon to
+`app/icon.svg` (the site previously had none).
+
+**"Metallic" — the client's word in the meeting, with no explanation.**
+Three readings were put to the user: cooler flat steel colours, a
+brushed-metal gradient, or metallic finishes reserved for print. The
+user chose the flat steel colours, so the lockup uses Gunmetal
+`#3A3F44` and Steel `#8A9199` in place of the kit's graphite, with the
+yellow tip unchanged, and the rest of the site keeps its existing
+palette. The user then asked for a hover effect: a single light sheen
+sweeps the mark and "CONSULO" over 0.9s, once per hover, masked to those
+shapes, off for `prefers-reduced-motion`. **Still worth deciding:** if
+the client likes the steel look, the site palette is the next
+conversation; metallic foil suits print and signage.
+
+**Screenshots:** `logo-steel-rest.png`, `logo-steel-hover-1.png`
+(light on the mark), `logo-steel-hover-2.png` (light across the word).
+
+---
+
+## 14. Clients page hidden (commit `ca5c9f5`)
+
+The client said the Clients page is not needed for now. It is hidden
+rather than deleted: `/clients` redirects to the homepage via
+`next.config.mjs`, and the page code stays in `app/clients` so removing
+the redirect brings it back.
+
+Removed CLIENTS and its mega-menu from the header, the Clients link from
+the footer, the "view client experience" link from the homepage logo
+strip (logos kept) and the "← FOR CLIENTS" back link from Search
+Stories. The homepage employer CTA now points at `/contact`. Nothing on
+the site links to `/clients` any more.
+
+**Search Stories stays live** — the user's explicit choice — but it now
+sits under a hidden parent, so its only remaining entry point is the
+footer. **Also lost:** the "Industrial Sales Recruitment" search term
+from Insight 5 lived on the Clients page and now appears nowhere; it can
+move to another page if it still matters.
+
+**Screenshots:** `clients-hidden-nav-desktop.png`, `-mobile`.
+
+---
+
+## 15. Front-end test pass and fixes (commit `aac0c1f`)
+
+The user asked for a TestSprite run. **TestSprite is not connected to
+this session** (no MCP server), so the same ground was covered with
+Playwright: all 15 pages crawled for broken links, images, console and
+network errors; navigation journeys on desktop and mobile; and all three
+contact-form routes. There is no README or spec in the repo.
+
+**Fixed in `aac0c1f`:**
+1. **Broken market artwork on four pages.** `next/image` only detects an
+   SVG when the file starts with an XML declaration, so
+   `electrification.svg` and `energy-oilfield.svg` returned HTTP 400 on
+   the homepage, `/markets` and their own pages. Adding
+   `<?xml version="1.0" encoding="UTF-8"?>` makes both render for the
+   first time. (An earlier session note calling this "expected" for SVG
+   placeholders was wrong.)
+2. **About page broken image.** The "Four regions" section pointed at
+   `IMAGES.reach`, which does not exist. The image is removed; the
+   heading and region cards remain until a licensed map is supplied.
+3. **`/contact` reused the homepage title.** Its metadata now lives in
+   `app/contact/layout.jsx`, since the page itself is a client component.
+4. **Form field semantics.** Telephone is now `type="tel"` so phones
+   show a number keypad, and all 9 labels are tied to their inputs.
+
+**Passed:** every page 200 with one heading and a description; all
+desktop and mobile nav, the 8-item Markets dropdown, market card
+click-throughs, hero CTAs, the `/clients` redirect, the 404 page (which
+keeps the nav); no sideways scroll on 8 pages at phone width; and form
+validation itself (empty submits blocked, malformed email rejected on
+all three routes).
+
+**Screenshots:** `qa-fix-electrification-card.png`,
+`qa-fix-about-regions.png`.
+
+---
+
+## 16. Open items
+
+1. **The contact form discards every enquiry — the one launch blocker.**
+   `handleSubmit` only calls `setSubmitted(true)`; across nine test
+   submissions the browser sent zero requests, while visitors are told
+   "A member of the Consulo team will be in touch shortly." Delivery
+   needs a decision the code cannot supply: a destination inbox and an
+   account to send through (Resend, a form service, a database, or a
+   mailto stopgap). Left untouched pending that decision.
+2. **Three dead footer links** — Privacy Policy, Cookie Policy and Terms
+   are all `href="#"` on every page. A UK/EU-facing site normally needs
+   at least a privacy policy; the wording has to come from the client.
+3. **Flagged block from the meeting** (brand/partner list and the
+   tagline) — still on hold pending the client's clarification.
+4. **Oil & Gas / Energy SEO** for the new market page — deferred by the
+   client.
+5. **Licensed photography** for Electrification and Energy & Oilfield,
+   which currently use placeholder artwork.
+6. **The white logo variant is unused** — the footer is dark and still
+   carries no logo.
+7. **The client has not yet seen** the mosaic, the new logo or the
+   hidden Clients page.
+
+---
+
+## 17. Infrastructure incidents during the session
 
 These aren't part of the client feedback but materially affected how the
 session went, so they're recorded here for anyone picking this back up.
@@ -330,7 +486,7 @@ session went, so they're recorded here for anyone picking this back up.
 
 ---
 
-## 13. Status as of this log
+## 18. Status as of this log
 
 **All 8 actionable feedback items are complete**, plus one user-reported
 mobile fix caught after the fact — each shown to the user and approved
@@ -348,6 +504,10 @@ before committing:
 | `afba89d` | Insight 7 — "Map" made visually prominent |
 | `cf85d39` | Insight 8 — new Energy & Oilfield Technologies market |
 | `3c5fc0e` | Mobile CTA buttons overlapping (user-reported, post-review) |
+| `33b0026` → `2152c4d` | Market cards rebuilt as a shared mosaic grid |
+| `9d617a5` | New logo system, steel colours, hover sheen, favicon |
+| `ca5c9f5` | Clients page hidden behind a redirect |
+| `aac0c1f` | Broken images, contact metadata, form field semantics |
 
 **On hold, per the client's own note in the source document:** the
 flagged brand-list/tagline block (Insight 9) — not implemented, pending
@@ -357,5 +517,9 @@ with your market.")* was already live on the site before this meeting
 (see Insight 4 notes above) — the client may want to know that when they
 revisit it.
 
-**Suggested next step:** send this round of updates to the client, then
-revisit the flagged block once they've clarified it.
+All of the above is pushed to `origin/main`.
+
+**Suggested next step:** send this round of updates to the client and
+wait for his feedback, then settle the contact form, which is the only
+item that actively loses business. Section 16 lists everything still
+open.
