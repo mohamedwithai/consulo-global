@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import ClientLogo from './ClientLogo';
 import { FadeIn } from './AnimatedSection';
 import { FEATURED_CLIENTS } from '../lib/data';
@@ -18,12 +17,6 @@ export default function ClientLogoStrip() {
               Companies we have recruited for across industrial technology.
             </h2>
           </div>
-          <Link
-            href="/clients#client-experience"
-            className="text-charcoal text-sm font-bold tracking-[0.15em] border-b-2 border-signal pb-1 hover:text-signal transition-colors"
-          >
-            VIEW CLIENT EXPERIENCE →
-          </Link>
         </FadeIn>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {FEATURED_CLIENTS.map((client, i) => (

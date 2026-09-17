@@ -10,7 +10,6 @@ import { MARKETS } from '../lib/data';
 const NAV_ITEMS = [
   { href: '/', label: 'HOME' },
   { href: '/markets', label: 'MARKETS', mega: 'markets' },
-  { href: '/clients', label: 'CLIENTS', mega: 'clients' },
   { href: '/candidates', label: 'CANDIDATES', mega: 'candidates' },
   { href: '/about', label: 'ABOUT' },
   { href: '/insights', label: 'INSIGHTS' },
@@ -19,15 +18,6 @@ const NAV_ITEMS = [
 
 const MEGA_CONTENT = {
   markets: MARKETS.map((m) => ({ label: m.title, href: `/markets/${m.id}` })),
-  clients: [
-    { label: 'Search Services', href: '/clients' },
-    { label: 'Contingent Search', href: '/clients' },
-    { label: 'Exclusive Search', href: '/clients' },
-    { label: 'Executive Search', href: '/clients' },
-    { label: 'Talent Mapping', href: '/clients' },
-    { label: 'Search Stories', href: '/clients/search-stories' },
-    { label: 'Discuss a Search', href: '/contact' },
-  ],
   candidates: [
     { label: 'Explore Opportunities', href: '/candidates' },
     { label: 'Targeted Market Representation', href: '/candidates' },

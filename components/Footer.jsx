@@ -28,7 +28,6 @@ export default function Footer() {
           <div>
             <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">WORK WITH US</div>
             <ul className="space-y-2">
-              <li><Link href="/clients" className="text-sm text-white/70 hover:text-signal transition-colors">Clients</Link></li>
               <li><Link href="/candidates" className="text-sm text-white/70 hover:text-signal transition-colors">Candidates</Link></li>
               <li><Link href="/clients/search-stories" className="text-sm text-white/70 hover:text-signal transition-colors">Search Stories</Link></li>
               <li><Link href="/contact" className="text-sm text-white/70 hover:text-signal transition-colors">Discuss a Search</Link></li>

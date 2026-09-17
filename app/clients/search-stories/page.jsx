@@ -14,9 +14,6 @@ export default function SearchStoriesPage() {
       <section className="pt-40 pb-28 bg-charcoal">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <FadeIn>
-            <Link href="/clients" className="inline-block text-white/50 text-xs font-bold tracking-[0.2em] mb-6 hover:text-signal transition-colors">
-              ← FOR CLIENTS
-            </Link>
             <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">SEARCH STORIES</div>
             <h1 className="text-5xl md:text-7xl font-black text-white leading-[0.95] tracking-tight max-w-5xl">
               The thinking behind the search.

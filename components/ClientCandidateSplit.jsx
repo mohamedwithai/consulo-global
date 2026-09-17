@@ -22,7 +22,7 @@ export default function ClientCandidateSplit() {
               </p>
               <motion.div whileHover={{ x: 4 }} transition={{ type: 'spring', stiffness: 400 }}>
                 <Link
-                  href="/clients"
+                  href="/contact"
                   className="inline-block bg-signal text-charcoal px-6 py-3 text-xs font-bold tracking-[0.15em] group-hover:shadow-lg transition-shadow"
                 >
                   DISCUSS A SEARCH →
