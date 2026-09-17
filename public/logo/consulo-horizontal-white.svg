@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" width="420" height="100">
+  <g><path d="M76.8 29.07 A34 34 0 1 0 76.8 70.93" fill="none" stroke="#FFFFFF" stroke-width="14"></path>
+  <rect x="50" y="43" width="26" height="14" fill="#FFFFFF"></rect>
+  <rect x="76" y="43" width="7" height="14" fill="#F5C518"></rect></g>
+  <text x="122" y="48" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="2.2" fill="#FFFFFF">CONSULO</text>
+  <text x="124" y="74" font-family="Archivo, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="7.4" fill="#B5B5B5">GLOBAL</text>
+</svg>

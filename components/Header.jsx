@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Logo from './Logo';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MARKETS } from '../lib/data';
@@ -51,12 +52,8 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-bone/95 backdrop-blur-md border-b border-charcoal/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex items-center justify-between h-20">
-          <Link href="/" onClick={handleNav} className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-signal flex items-center justify-center font-black text-charcoal text-lg tracking-tight">C</div>
-            <div className="flex flex-col">
-              <span className="font-black text-charcoal text-lg tracking-tight leading-none">CONSULO</span>
-              <span className="text-[10px] tracking-[0.2em] text-charcoal/60 uppercase leading-none mt-1">Global</span>
-            </div>
+          <Link href="/" onClick={handleNav} className="logo-link flex items-center">
+            <Logo className="h-11 w-auto" />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">

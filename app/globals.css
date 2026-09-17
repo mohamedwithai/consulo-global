@@ -10,7 +10,25 @@ html {
   scroll-behavior: smooth;
 }
 
+.logo-sheen {
+  opacity: 0;
+}
+
+.logo-link:hover .logo-sheen {
+  animation: logo-sheen 900ms ease-in-out 1;
+}
+
+@keyframes logo-sheen {
+  0% { opacity: 1; transform: translateX(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(560px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .logo-link:hover .logo-sheen {
+    animation: none;
+  }
+
   html {
     scroll-behavior: auto;
   }
