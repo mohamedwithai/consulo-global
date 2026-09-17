@@ -9,7 +9,7 @@ const archivo = Archivo({ subsets: ['latin'], weight: ['500', '700'], variable: 
 export const metadata = {
   title: 'Consulo Global | Industrial Technology Search',
   description:
-    'Specialist search for the commercial, technical and leadership talent behind industrial technology across the United States, United Kingdom, Continental Europe and Middle East.',
+    'Specialist search for the commercial, technical and leadership talent behind industrial technology across the United Kingdom, Continental Europe, Middle East and United States.',
 };
 
 export default function RootLayout({ children }) {

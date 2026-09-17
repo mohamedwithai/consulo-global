@@ -19,7 +19,7 @@ const HERITAGE = [
   {
     k: 'Four regions',
     t: 'One methodology',
-    d: 'The same specialist approach applied across the United States, United Kingdom, Continental Europe and Middle East.',
+    d: 'The same specialist approach applied across the United Kingdom, Continental Europe, Middle East and United States.',
   },
 ];
 

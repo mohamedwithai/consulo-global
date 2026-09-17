@@ -16,7 +16,7 @@ export default function RegionGrid() {
               Four regions. One specialist search methodology.
             </h2>
             <p className="text-lg text-charcoal/70 leading-relaxed mb-8">
-              Headquartered in Dubai, Consulo Global operates across the United States, United Kingdom, Continental Europe and Middle East — mapping talent, competitors and routes to market for industrial technology businesses wherever they operate.
+              Headquartered in Dubai, Consulo Global operates across the United Kingdom, Continental Europe, Middle East and United States — mapping talent, competitors and routes to market for industrial technology businesses wherever they operate.
             </p>
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
               <Link
