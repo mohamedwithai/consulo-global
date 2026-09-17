@@ -14,7 +14,7 @@ const FIELDS = {
     { k: 'name', l: 'Name', req: true },
     { k: 'company', l: 'Company', req: true },
     { k: 'email', l: 'Work email', req: true, type: 'email' },
-    { k: 'phone', l: 'Telephone', req: true },
+    { k: 'phone', l: 'Telephone', req: true, type: 'tel' },
     { k: 'role', l: 'Role / capability required', req: true },
     { k: 'geography', l: 'Geography', req: true },
     { k: 'market', l: 'Specialist market', req: true },
@@ -86,11 +86,12 @@ export default function ContactPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   {FIELDS[route].map((f) => (
                     <div key={f.k} className={f.area ? 'md:col-span-2' : ''}>
-                      <label className="block text-xs font-bold tracking-[0.1em] text-charcoal mb-2">
+                      <label htmlFor={`field-${f.k}`} className="block text-xs font-bold tracking-[0.1em] text-charcoal mb-2">
                         {f.l} {f.req && <span className="text-signal">*</span>}
                       </label>
                       {f.area ? (
                         <textarea
+                          id={`field-${f.k}`}
                           required={f.req}
                           value={form[f.k] || ''}
                           onChange={(e) => setForm({ ...form, [f.k]: e.target.value })}
@@ -99,6 +100,7 @@ export default function ContactPage() {
                         />
                       ) : (
                         <input
+                          id={`field-${f.k}`}
                           type={f.type || 'text'}
                           required={f.req}
                           value={form[f.k] || ''}

@@ -163,18 +163,7 @@ export default function AboutPage() {
             <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">INTERNATIONAL REACH</div>
             <h2 className="text-4xl md:text-5xl font-black text-charcoal leading-tight tracking-tight">Four regions. One specialist methodology.</h2>
           </FadeIn>
-          <FadeIn delay={0.1}>
-            <div className="relative w-full aspect-[1000/560]">
-              <Image
-                src={IMAGES.reach}
-                alt="Consulo Global operates across the United States, United Kingdom, Continental Europe and Middle East"
-                fill
-                sizes="(max-width: 1280px) 100vw, 1200px"
-                className="object-cover"
-              />
-            </div>
-          </FadeIn>
-          <StaggerContainer className="grid md:grid-cols-4 gap-4 mt-10" stagger={0.08}>
+          <StaggerContainer className="grid md:grid-cols-4 gap-4" stagger={0.08}>
             {REGIONS.map((r, i) => (
               <StaggerItem key={r}>
                 <div className="bg-bone p-8 border-t-4 border-signal h-full">
