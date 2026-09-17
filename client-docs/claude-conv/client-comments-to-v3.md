@@ -411,7 +411,29 @@ all three routes).
 
 ---
 
-## 16. Open items
+## 16. Region order changed to lead with the United Kingdom (commit `60c94a8`)
+
+The user asked for the four regions to read United Kingdom, Continental
+Europe, Middle East, United States, rather than leading with the United
+States as they had since the first build.
+
+`REGIONS` in `lib/data.js` is the single source for the order — the
+numbered 01-04 grid on the homepage (`components/RegionGrid.jsx`), the
+About page grid and the footer list all map over that array, so
+reordering it renumbers the cards automatically. The supporting prose and
+page metadata were reordered to match, in `app/page.jsx`,
+`components/RegionGrid.jsx`, `app/layout.jsx`, `app/about/page.jsx` and
+`app/contact/layout.jsx`. The About page intro paragraph already used
+this order and was left as it was.
+
+**Deliberately unchanged:** `public/about/reach.svg`. Its four nodes are
+positioned geographically, with Dubai labelled as headquarters, so there
+is no list order in it to change. (The About page no longer renders this
+file anyway — see section 15.)
+
+---
+
+## 17. Open items
 
 1. **The contact form discards every enquiry — the one launch blocker.**
    `handleSubmit` only calls `setSubmitted(true)`; across nine test
@@ -436,7 +458,7 @@ all three routes).
 
 ---
 
-## 17. Infrastructure incidents during the session
+## 18. Infrastructure incidents during the session
 
 These aren't part of the client feedback but materially affected how the
 session went, so they're recorded here for anyone picking this back up.
@@ -484,9 +506,25 @@ session went, so they're recorded here for anyone picking this back up.
    `npm run dev`. From this point on, builds are verified only inside
    isolated worktrees, never in the live directory.
 
+5. **This session cannot push to GitHub; the user has to do it.** After
+   the section 16 commit, `git push` failed with
+   `could not read Username for 'https://github.com'` — there is no
+   credential helper, no `~/.netrc`, no token in the environment, and
+   `gh` is not installed (it is in the Ubuntu 24.04 archive, but
+   installing it needs sudo and `gh auth login` is interactive). An
+   ed25519 key was generated at `~/.ssh/id_ed25519`
+   (`SHA256:M9P4L6jetPNcxh1plSbHNnT18cIbMRR2vas40SsQXAI`, no passphrase)
+   and `origin` was switched to SSH, but GitHub still answers
+   `Permission denied (publickey)` — the key never took effect on the
+   account. The user pushed over HTTPS themselves instead, and `origin`
+   is back on the HTTPS URL. **Reads still work unauthenticated because
+   the repo is public**, which is why `git fetch` succeeds here and can
+   look misleading. Until the key is registered, every push is a manual
+   step for the user.
+
 ---
 
-## 18. Status as of this log
+## 19. Status as of this log
 
 **All 8 actionable feedback items are complete**, plus one user-reported
 mobile fix caught after the fact — each shown to the user and approved
@@ -508,6 +546,7 @@ before committing:
 | `9d617a5` | New logo system, steel colours, hover sheen, favicon |
 | `ca5c9f5` | Clients page hidden behind a redirect |
 | `aac0c1f` | Broken images, contact metadata, form field semantics |
+| `60c94a8` | Region order changed to lead with the United Kingdom |
 
 **On hold, per the client's own note in the source document:** the
 flagged brand-list/tagline block (Insight 9) — not implemented, pending
@@ -521,5 +560,5 @@ All of the above is pushed to `origin/main`.
 
 **Suggested next step:** send this round of updates to the client and
 wait for his feedback, then settle the contact form, which is the only
-item that actively loses business. Section 16 lists everything still
+item that actively loses business. Section 17 lists everything still
 open.
