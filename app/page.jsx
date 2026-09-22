@@ -18,7 +18,8 @@ export default function HomePage() {
         href1="/contact"
         cta2="EXPLORE OPPORTUNITIES"
         href2="/candidates"
-        image={IMAGES.hero}
+        video="/video/hero-industrial.mp4"
+        poster="/video/hero-industrial-poster.jpg"
       />
 
       <ClientLogoStrip />

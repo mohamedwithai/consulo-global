@@ -20,3 +20,9 @@ yarn-error.log*
 # env files
 .env*.local
 .env*
+
+# Resend API key for the contact form — never commit real credentials.
+# config.sample.php (the template) IS tracked; config.php (with the real
+# key) is created manually on the server and must stay untracked.
+public/api/config.php
+

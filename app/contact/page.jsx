@@ -39,14 +39,49 @@ const FIELDS = {
   ],
 };
 
+// PHP endpoint deployed alongside the static export (see public/api/send.php).
+// It calls Resend server-side, keeping the API key out of the browser —
+// unlike Web3Forms, Resend's key is a secret and cannot be embedded client-side.
+const CONTACT_ENDPOINT = '/api/send.php';
+
 export default function ContactPage() {
   const [route, setRoute] = useState(null);
   const [form, setForm] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+
+    // Honeypot: a hidden field real visitors never fill in. Bots that do
+    // get a silent fake success with nothing actually sent.
+    if ((form.botcheck || '').trim()) {
+      setSubmitted(true);
+      return;
+    }
+
+    setSending(true);
+    setError('');
+
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, route }),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Unable to send your enquiry right now.');
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to send your enquiry right now.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -83,6 +118,18 @@ export default function ContactPage() {
               <div className="text-signal text-xs font-bold tracking-[0.2em] mb-4">{ROUTES.find((r) => r.id === route).label}</div>
               <h2 className="text-3xl md:text-4xl font-black text-charcoal mb-10 tracking-tight">Tell us more.</h2>
               <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 border border-charcoal/10">
+                {/* Honeypot: hidden from real users via CSS + tabIndex, but
+                    bots that auto-fill every input will populate it. */}
+                <input
+                  type="text"
+                  name="botcheck"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  value={form.botcheck || ''}
+                  onChange={(e) => setForm({ ...form, botcheck: e.target.value })}
+                  style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
+                />
                 <div className="grid md:grid-cols-2 gap-6">
                   {FIELDS[route].map((f) => (
                     <div key={f.k} className={f.area ? 'md:col-span-2' : ''}>
@@ -111,8 +158,9 @@ export default function ContactPage() {
                     </div>
                   ))}
                 </div>
-                <button type="submit" className="mt-8 bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-charcoal hover:text-signal transition-colors">
-                  SEND MESSAGE →
+                {error ? <p className="mt-6 text-sm text-red-600" role="alert">{error}</p> : null}
+                <button type="submit" disabled={sending} className="mt-8 bg-signal text-charcoal px-8 py-4 text-sm font-bold tracking-[0.15em] hover:bg-charcoal hover:text-signal transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+                  {sending ? 'SENDING…' : 'SEND MESSAGE →'}
                 </button>
               </form>
             </motion.div>

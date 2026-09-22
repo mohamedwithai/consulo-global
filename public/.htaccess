@@ -1,0 +1,15 @@
+# Consulo Global — static export on traditional (Apache/LiteSpeed) hosting.
+# next.config.mjs `redirects()` only applies to Vercel/Node deployments and
+# is silently ignored by `output: 'export'`, so the /clients hide-at-request
+# redirect has to live here instead for the static build to honour it.
+Redirect 302 /clients /
+
+# Pretty URLs: Next's static export writes /contact/index.html etc (trailingSlash:
+# true), and Apache serves index.html from a directory automatically, so no
+# extra rewrite rules are needed for routing.
+
+# Never serve the PHP mailer's environment file if it is ever placed under
+# the web root by mistake.
+<FilesMatch "\.env$">
+  Require all denied
+</FilesMatch>

@@ -18,7 +18,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } },
 };
 
-export default function Hero({ title, subtitle, cta1, cta2, href1, href2, image }) {
+export default function Hero({ title, subtitle, cta1, cta2, href1, href2, image, video, poster }) {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       <motion.div
@@ -27,7 +27,22 @@ export default function Hero({ title, subtitle, cta1, cta2, href1, href2, image 
         animate={{ scale: 1 }}
         transition={{ duration: 1.4, ease: easeOut }}
       >
-        <Image src={image} alt="" fill priority className="object-cover" />
+        {video ? (
+          // Autoplay requires muted + playsInline (iOS Safari). Poster shows
+          // instantly while the video buffers so there is never a blank frame.
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src={video}
+            poster={poster}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          />
+        ) : (
+          <Image src={image} alt="" fill priority className="object-cover" />
+        )}
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/95 via-charcoal/70 to-charcoal/30" />
       </motion.div>
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full pt-20">
