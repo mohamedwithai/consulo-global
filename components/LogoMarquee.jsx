@@ -34,7 +34,9 @@ export default function LogoMarquee({ logos, duration = 40, label = 'Partner log
       <div
         role="region"
         aria-label={label}
-        className="logo-marquee group relative flex overflow-hidden select-none [-webkit-touch-callout:none]"
+        // py-3: headroom so the hover zoom (scale-105) isn't clipped by
+        // overflow-hidden at the top and bottom of the strip.
+        className="logo-marquee group relative flex overflow-hidden py-3 select-none [-webkit-touch-callout:none]"
         data-paused={paused ? 'true' : undefined}
         style={{ '--marquee-duration': `${duration}s` }}
         onTouchStart={() => setHeld(true)}
