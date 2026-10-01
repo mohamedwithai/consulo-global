@@ -24,6 +24,56 @@ html {
   100% { opacity: 0; transform: translateX(560px); }
 }
 
+/* Logo carousel (components/LogoMarquee.jsx) */
+.logo-marquee {
+  /* Soft fade at both edges so logos glide in and out rather than clip. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.logo-marquee__set {
+  will-change: transform;
+}
+
+.logo-marquee[data-paused] .logo-marquee__set,
+.logo-marquee:focus-within .logo-marquee__set {
+  animation-play-state: paused;
+}
+
+/* Hover-pause only on real pointers: on phones a tap leaves a sticky :hover
+   that would freeze the strip until the visitor taps elsewhere. Touch uses
+   press-and-hold instead (handled in the component). */
+@media (hover: hover) and (pointer: fine) {
+  .logo-marquee:hover .logo-marquee__set {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No auto-scroll: show one set as a static row the visitor can swipe. */
+  .logo-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scroll-snap-type: x proximity;
+    padding-bottom: 0.5rem;
+  }
+
+  .logo-marquee__set {
+    animation: none !important;
+    margin-inline: auto;
+  }
+
+  .logo-marquee__set > li {
+    scroll-snap-align: center;
+  }
+
+  .logo-marquee__set[aria-hidden='true'],
+  .logo-marquee__toggle {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .logo-link:hover .logo-sheen {
     animation: none;
