@@ -68,8 +68,7 @@ html {
     scroll-snap-align: center;
   }
 
-  .logo-marquee__set[aria-hidden='true'],
-  .logo-marquee__toggle {
+  .logo-marquee__set[aria-hidden='true'] {
     display: none;
   }
 }
